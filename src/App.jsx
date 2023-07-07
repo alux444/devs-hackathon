@@ -1,12 +1,13 @@
 import { useState } from "react";
 import "./App.css";
 import Login from "./components/loginpage/Login";
+import Home from "./components/mainpage/Home";
 
 function App() {
   return (
     <>
-      <p className="border-2 text-[red]">Hello</p>
       <Login />
+      <Home />
     </>
   );
 }
