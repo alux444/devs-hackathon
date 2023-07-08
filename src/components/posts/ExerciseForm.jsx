@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 
-const ExerciseForm = () => {
+const ExerciseForm = ({ submit, exit }) => {
   const [sets, setSets] = useState([]);
+  const [name, setName] = useState("");
   const [thisSet, setThisSet] = useState({ weight: 0, reps: 0, units: "kg" });
+
+  const handleName = (e) => {
+    if (e.target.value.length < 40) {
+      setName(e.target.value);
+    }
+  };
 
   const handleAddSet = () => {
     const newSets = [...sets, thisSet];
@@ -34,7 +41,9 @@ const ExerciseForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(sets);
+    const exercise = { name: name, sets: sets };
+    submit(exercise);
+    exit();
   };
 
   const mappedSets = sets.map((set, index) => (
@@ -52,6 +61,8 @@ const ExerciseForm = () => {
 
   return (
     <div className="flex gap-2 flex-col">
+      <label>Exercise Name</label>
+      <input type="text" value={name} onChange={handleName} />
       {mappedSets}
       <div>
         <label>Weight</label>

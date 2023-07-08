@@ -83,7 +83,26 @@ const useFirebase = () => {
     return false;
   };
 
-  return { createUser, googleAttemptLogin, validateEmail, attemptLogin };
+  const fetchAllUsers = async () => {
+    const data = [];
+    const usersRef = collection(db, "users");
+
+    const postsDocs = await getDocs(query(usersRef));
+
+    postsDocs.docs.map((item) => {
+      data.push(item.data());
+    });
+
+    return data;
+  };
+
+  return {
+    createUser,
+    googleAttemptLogin,
+    validateEmail,
+    attemptLogin,
+    fetchAllUsers,
+  };
 };
 
 export default useFirebase;
