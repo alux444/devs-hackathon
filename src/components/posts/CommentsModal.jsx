@@ -6,6 +6,7 @@ import PostContainer from "./PostContainer";
 import { getComments } from "../../utils/getComments";
 import addNewComment from "../../utils/addNewComment";
 import Comment from "./Comment";
+import CommentPostCont from "./CommentPostCont";
 
 const CommentsModal = ({ post, open, close }) => {
   const [comment, setComment] = useState("");
@@ -22,7 +23,8 @@ const CommentsModal = ({ post, open, close }) => {
 
   const fetchComments = async () => {
     const info = await getComments(post.id);
-    setData(info);
+    const sortedArray = info.sort((a, b) => b.time.seconds - a.time.seconds);
+    setData(sortedArray);
   };
 
   useEffect(() => {
@@ -33,7 +35,9 @@ const CommentsModal = ({ post, open, close }) => {
     e.preventDefault();
     await addNewComment(comment, user, post.id);
     setComment("");
-    fetchComments();
+    setTimeout(() => {
+      fetchComments();
+    }, 2000);
   };
 
   const mappedComments = data.map((comment) => (
@@ -47,18 +51,26 @@ const CommentsModal = ({ post, open, close }) => {
           ref={modalRef}
           className="border-2 border-solid flex flex-col border-white p-[25px] text-center items-center align-center bg-[black]"
         >
-          <PostContainer post={post} />
-          {data.length == 0 ? <p>No comments yet.</p> : mappedComments}
+          <CommentPostCont post={post} />
+          {data.length == 0 ? (
+            <p>No comments yet.</p>
+          ) : (
+            <div className="max-h-[30vh] overflow-auto w-full flex flex-col items-center border-2">
+              {mappedComments}
+            </div>
+          )}
           <div className="max-h-[50vh]">
             {user.loggedIn ? (
               <div className="w-full">
-                <input
-                  className="w-[50vw]"
-                  type="text"
-                  value={comment}
-                  onChange={handleComment}
-                ></input>
-                <button onClick={onSubmit}>Comment</button>
+                <form onSubmit={onSubmit}>
+                  <input
+                    className="w-[40vw] lg:w-[60vw]"
+                    type="text"
+                    value={comment}
+                    onChange={handleComment}
+                  ></input>
+                  <button type="submit">Comment</button>
+                </form>
               </div>
             ) : (
               <small>Login to comment.</small>
