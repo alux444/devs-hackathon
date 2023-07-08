@@ -30,7 +30,7 @@ const PostContainer = ({ post }) => {
           {isLoading ? (
             <span>Loading avatar...</span>
           ) : (
-            <img src={avatar === "" ? noPfp : avatar} className="w-[10vw]" />
+            <img src={avatar === "" ? noPfp : avatar} className="w-[8vw]" />
           )}
           <div className="flex flex-col gap-2">
             <p>{post.username}</p>

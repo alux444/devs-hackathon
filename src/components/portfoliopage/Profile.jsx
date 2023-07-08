@@ -38,7 +38,7 @@ const Profile = ({ email }) => {
       <div className="flex items-center flex-col p-2">
         <img
           src={userInfo.avatar == "" ? noPfp : userInfo.avatar}
-          className="w-[5vw] lg:w-[9vw]"
+          className="h-[20vh]"
         />
         <h2>{userInfo.username}</h2>
         <p>{userInfo.bio}</p>

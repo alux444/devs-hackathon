@@ -60,7 +60,7 @@ const CommentsModal = ({ post, open, close }) => {
           )}
           <div className="max-h-[50vh]">
             {user.loggedIn ? (
-              <form className="w-full flex gap-5" onSubmit={onSubmit}>
+              <form className="w-full flex gap-5 mt-5" onSubmit={onSubmit}>
                 <input
                   className="w-[40vw] lg:w-[60vw]"
                   type="text"

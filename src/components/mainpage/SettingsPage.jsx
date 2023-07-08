@@ -86,14 +86,21 @@ const SettingsPage = () => {
         </label>
       </div>
       <div>
+        <small>Email</small>
         <h2>{user.email}</h2>
       </div>
       <div>
+        <small>Username</small>
         <h2>{user.username}</h2>
       </div>
       {data && (
-        <div>
-          <input type="text" value={bio} onChange={onChangeBio} />
+        <div className="flex flex-col">
+          <label>Bio</label>
+          <textarea
+            className="border-[1px] w-[27vw] lg:w-[40vw] md:w-[65vw]"
+            value={bio}
+            onChange={onChangeBio}
+          />
         </div>
       )}
       <button onClick={onSubmit}>Submit</button>
