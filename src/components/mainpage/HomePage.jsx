@@ -20,7 +20,7 @@ const HomePage = () => {
   });
 
   return (
-    <div className="overflow-auto flex flex-col w-[75vw] lg:h-[82vh] lg:w-[90vw] p-3 border-[1px]">
+    <div className="overflow-auto flex flex-col w-[75vw] h-[100%] p-3 border-[1px]">
       <p className="title">Zinstagram</p>
       <div className="flex flex-col items-center">{mappedPosts}</div>
     </div>

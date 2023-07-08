@@ -23,7 +23,7 @@ const Home = () => {
         <SideBar />
       </div>
       <div
-        className="w-[75vw] lg:w-[90vw] h-full lg:h-[100%] flex justify-center"
+        className="w-[75vw] lg:w-[90vw] h-full lg:h-[70vh] flex justify-center"
         style={backgroundImage}
       >
         {page == "home" && <HomePage />}
