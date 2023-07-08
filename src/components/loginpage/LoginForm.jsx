@@ -60,7 +60,7 @@ const LoginForm = ({ swap }) => {
           <GoogleButton />
         </div>
         <div>
-          <button onClick={swap}>
+          <button className="mt-2" onClick={swap}>
             <small>Sign up?</small>
           </button>
         </div>

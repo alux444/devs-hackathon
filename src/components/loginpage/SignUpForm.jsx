@@ -66,14 +66,14 @@ const SignUpForm = ({ swap }) => {
           placeholder="Re-enter password"
         />
       </div>
-      <button className="mt-2 text-blue-500" type="submit">
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-24 rounded mb-2" type="submit">
         Sign up
       </button>
-      <div className="flex justify-center align-center items-center">
+      <div className="flex justify-center align-center items-center mb-4">
         <GoogleButton />
       </div>
       <div>
-        <button onClick={swap}>
+        <button className="mt-2"onClick={swap}>
           <small>Login?</small>
         </button>
       </div>

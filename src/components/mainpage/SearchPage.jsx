@@ -22,10 +22,14 @@ const SearchPage = () => {
     if (val.username.toLowerCase().includes(username.toLowerCase())) {
       return val;
     }
-  });
-  const display = filterExercises.map((guy) => {
-    return <div key={guy.username}>{guy.username}</div>;
-  });
+  })
+  const display = filterExercises.map((guy)=>{
+    return(
+      <div className="mt-2" key={guy.username}>
+        {guy.username}
+      </div>
+    )
+  })
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -35,7 +39,7 @@ const SearchPage = () => {
         placeholder="Search for a user.."
         value={username}
       />
-      <h3 className="font-bold text-xl mb-4">Users</h3>
+      <h3 className="font-bold text-xl mt-4">Users</h3>
       <div className="flex flex-col items-center">{display}</div>
     </div>
   );
