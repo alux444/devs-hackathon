@@ -6,6 +6,7 @@ import { UserContext } from "../../App";
 import { v4 as uuidv4 } from "uuid";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../fbConfig";
+import ExerciseForm from "./ExerciseForm";
 
 const AddWorkoutModal = ({ open, close }) => {
   const { user } = useContext(UserContext);
@@ -41,24 +42,25 @@ const AddWorkoutModal = ({ open, close }) => {
       <div className="w-[100%] h-[100%] items-center align-center justify-center flex">
         <div
           ref={modalRef}
-          className="border-2 border-solid border-white p-[25px] text-center items-center"
+          className="border-2 border-solid border-white p-[25px] text-center items-center bg-[black]"
         >
           {newExercise ? (
             <div className="flex flex-col gap-2">
               <label>Exercise Name</label>
               <input type="text" />
-              <button>Add Exercise</button>
+              <ExerciseForm />
               <button onClick={() => setNewExercise(false)}>Cancel</button>
             </div>
           ) : (
             <div>
-              <h2>New Workout</h2>
+              <h2 className="text-xl">New Workout</h2>
               <form className="flex flex-col gap-2" onSubmit={onSubmit}>
-                <label>Name Workout</label>
+                <label>Workout Name</label>
                 <input type="text" />
                 <button type="button" onClick={() => setNewExercise(true)}>
                   Add exercise
                 </button>
+                <button type="submit">Submit Workout</button>
               </form>
             </div>
           )}
