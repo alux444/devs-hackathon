@@ -19,7 +19,7 @@ const HomePage = () => {
   });
 
   return (
-    <div className="overflow-auto flex border-2 flex-col">
+    <div className="overflow-auto flex border-2 flex-col w-[75vw]">
       <p>Home</p>
       <div className="flex flex-col items-center">{mappedPosts}</div>
     </div>
