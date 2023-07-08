@@ -77,7 +77,7 @@ const SideBar = () => {
         <button onClick={() => setPage("profile")}>
           <AccountCircleIcon />
         </button>
-        <button>
+        <button onClick={() => setPage("settings")}>
           <SettingsIcon />
         </button>
       </div>
@@ -100,7 +100,7 @@ const SideBar = () => {
             <button onClick={() => setPage("profile")}>
               <AccountCircleIcon />
             </button>
-            <button>
+            <button onClick={() => setPage("settings")}>
               <SettingsIcon />
             </button>
             <button onClick={() => setShowMenu(false)}>X</button>

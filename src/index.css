@@ -73,3 +73,42 @@ button:focus-visible {
 .animate-fade-in {
   animation: fade-in 0.3s ease-in-out;
 }
+
+.file-input-mask {
+  position: relative;
+  width: 100%; /* Set the width to 100% to cover the image */
+  height: 100%; /* Set the height to 100% to cover the image */
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-input:hover + .overlay {
+  opacity: 1;
+  z-index: 2;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  border-radius: 5px;
+  background-color: rgba(161, 160, 160, 0.8);
+}
+
+.overlay:hover {
+  opacity: 1;
+}
