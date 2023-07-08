@@ -7,13 +7,12 @@ import { v4 as uuidv4 } from "uuid";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../fbConfig";
 
-const AddWorkoutModal = () => {
+const AddWorkoutModal = ({ open, close }) => {
   const { user } = useContext(UserContext);
+  const [exercises, setExercises] = useState([]);
+  const [newExercise, setNewExercise] = useState(false);
   const [caption, setCaption] = useState("");
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [uploading, setUploading] = useState(false);
-  const storage = getStorage();
-  const postRef = collection(db, "posts");
+  const postRef = collection(db, "workouts");
   const modalRef = useRef(null);
 
   useOutsideClick(modalRef, close);
@@ -23,27 +22,11 @@ const AddWorkoutModal = () => {
     const postId = uuidv4();
 
     const captionData = caption;
-    let url = "";
-
-    if (selectedImage) {
-      try {
-        setUploading(true);
-        const storageRef = ref(storage, "images/" + postId);
-        await uploadBytes(storageRef, selectedImage);
-        const downloadURL = await getDownloadURL(storageRef);
-        url = downloadURL;
-      } catch (error) {
-        console.error("Error uploading image:", error);
-      } finally {
-        setUploading(false);
-      }
-    }
 
     const createNewPost = async () => {
       await addDoc(postRef, {
         time: serverTimestamp(),
         user: user.email,
-        image: url,
         caption: captionData,
         id: postId,
       });
@@ -60,7 +43,25 @@ const AddWorkoutModal = () => {
           ref={modalRef}
           className="border-2 border-solid border-white p-[25px] text-center items-center"
         >
-          <form onSubmit={onSubmit}></form>
+          {newExercise ? (
+            <div className="flex flex-col gap-2">
+              <label>Exercise Name</label>
+              <input type="text" />
+              <button>Add Exercise</button>
+              <button onClick={() => setNewExercise(false)}>Cancel</button>
+            </div>
+          ) : (
+            <div>
+              <h2>New Workout</h2>
+              <form className="flex flex-col gap-2" onSubmit={onSubmit}>
+                <label>Name Workout</label>
+                <input type="text" />
+                <button type="button" onClick={() => setNewExercise(true)}>
+                  Add exercise
+                </button>
+              </form>
+            </div>
+          )}
         </div>
       </div>
     </Modal>
