@@ -1,11 +1,55 @@
-import React from "react";
-
+import React, { useState } from "react";
+import useFirebase from "../../utils/useFirebase";
+import { useEffect } from "react";
 const SearchPage = () => {
+  const [username, setUsername] = useState("");
+  const { fetchAllUsers } = useFirebase();
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const fetchedUsers = await fetchAllUsers();
+      setUsers(fetchedUsers);
+    };
+
+    getUsers();
+  }, []);
+
+  function handleUsernameChange(event) {
+    setUsername(event.target.value);
+  }
+  const filterExercises = users.filter((val)=>{
+    if (val.username.toLowerCase().includes(username.toLowerCase())){
+      return val;
+    }
+  })
+  const display = filterExercises.map((guy)=>{
+    return(
+      <div className="">
+        {guy.username}
+      </div>
+    )
+  })
+
   return (
-    <div>
-      <p>s</p>
+    <div className="flex flex-col items-center justify-center"> {/* Updated CSS */}
+      <input
+        className="w-[16vw] h-[6vh] border-2 rounded-full mb-4"
+        onChange={handleUsernameChange}
+        placeholder="Search for a user.."
+        value={username}
+      />
+      <h3 className="font-bold text-xl mb-4">Users</h3>
+      <div className="flex flex-col items-center">{display}</div> {/* Updated CSS */}
     </div>
   );
 };
 
 export default SearchPage;
+
+
+
+
+
+
+
