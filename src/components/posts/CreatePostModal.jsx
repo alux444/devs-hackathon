@@ -79,6 +79,7 @@ const CreatePostModal = ({ open, close }) => {
         caption: captionData,
         id: postId,
         workout: selectedWorkout,
+        likes: 0,
       });
     };
 

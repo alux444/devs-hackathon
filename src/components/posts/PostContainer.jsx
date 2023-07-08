@@ -6,8 +6,8 @@ const PostContainer = ({ post }) => {
   const time = post.time ? date.toLocaleString() : "Loading";
 
   return (
-    <div className="items-center justify-center align-center gap-4 flex p-[10px] mt-[10px] mb-[10px] border-[1px] border-solid border-white max-w-[90%]">
-      <div className="flex flex-col gap-2 border-2">
+    <div className="items-center justify-center align-center gap-2 flex p-[10px] mt-[10px] mb-[10px] border-[1px] border-solid rounded-[20px] border-white max-w-[90%] lg:flex-col">
+      <div className="flex flex-col">
         <div className="flex flex-col items-center">
           <img
             src="https://firebasestorage.googleapis.com/v0/b/devs-hackathon.appspot.com/o/images%2Fdefault_pfp.png?alt=media&token=0b96cfc4-fd7d-4a3b-a716-b49f46d302a5"
@@ -22,13 +22,13 @@ const PostContainer = ({ post }) => {
         <img className="max-w-[70vw] max-h-[500px]" src={post.image} />
         <br />
       </div>
-      <div className="max-w-[60%] flex flex-col gap-2 max-h-[50vh] overflow-auto">
+      <div className="max-w-[60%] lg:max-w-[100%] flex flex-col gap-2 max-h-[50vh] overflow-auto">
         <div>
           <p>"{post.caption}"</p>
         </div>
         <div className="border-2">
           <h2>{post.workout.name}</h2>
-          <div className="flex flex-wrap justify-center">
+          <div className="flex flex-wrap justify-center align-center items-center">
             {post.workout.exercises.map((exercise) => (
               <div key={exercise.name} className="p-2">
                 <p>{exercise.name}</p>
@@ -45,7 +45,7 @@ const PostContainer = ({ post }) => {
           </div>
         </div>
       </div>
-      <InteractBar />
+      <InteractBar post={post} />
     </div>
   );
 };
