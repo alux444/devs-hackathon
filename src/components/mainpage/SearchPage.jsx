@@ -29,7 +29,7 @@ const SearchPage = () => {
   });
 
   return (
-    <div className="text-white flex flex-col items-center justify-between w-[75vw] lg:w-[90vw]">
+    <div className="text-white flex flex-col items-center justify-center w-[75vw] lg:w-[90vw]">
       <input
         className="w-[50vw] h-[6vh] border-2 rounded-full pl-5 mt-2"
         onChange={handleUsernameChange}
@@ -37,7 +37,7 @@ const SearchPage = () => {
         value={username}
       />
       <h3 className="font-bold text-xl mt-4">Users</h3>
-      <div className="flex flex-col items-center border-[1px] p-3 rounded-lg overflow-auto max-h-[50vh]">
+      <div className="flex flex-col items-start border-[1px] p-3 rounded-lg overflow-auto max-h-[50vh]">
         {display}
       </div>
     </div>
