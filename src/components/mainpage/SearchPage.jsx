@@ -25,14 +25,14 @@ const SearchPage = () => {
   })
   const display = filterExercises.map((guy)=>{
     return(
-      <div className="">
+      <div key={guy.username}>
         {guy.username}
       </div>
     )
   })
 
   return (
-    <div className="flex flex-col items-center justify-center"> {/* Updated CSS */}
+    <div className="flex flex-col items-center justify-center"> 
       <input
         className="w-[16vw] h-[6vh] border-2 rounded-full mb-4"
         onChange={handleUsernameChange}
@@ -40,7 +40,7 @@ const SearchPage = () => {
         value={username}
       />
       <h3 className="font-bold text-xl mb-4">Users</h3>
-      <div className="flex flex-col items-center">{display}</div> {/* Updated CSS */}
+      <div className="flex flex-col items-center">{display}</div>
     </div>
   );
 };
