@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import useFirebase from "../../utils/useFirebase";
+import GoogleButton from "./GoogleButton";
 
 const LoginForm = ({ swap }) => {
   const [email, setEmail] = useState("");
@@ -55,6 +56,9 @@ const LoginForm = ({ swap }) => {
         >
           Log in
         </button>
+        <div className="flex justify-center align-center items-center">
+          <GoogleButton />
+        </div>
         <div>
           <button onClick={swap}>
             <small>Sign up?</small>

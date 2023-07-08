@@ -13,7 +13,6 @@ function App() {
     <>
       <UserContext.Provider value={{ user, setUser }}>
         <PageContext.Provider value={{ page, setPage }}>
-          <Login />
           <Home />
         </PageContext.Provider>
       </UserContext.Provider>

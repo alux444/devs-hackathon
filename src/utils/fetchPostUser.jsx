@@ -5,7 +5,7 @@ export const fetchPostUser = async (email) => {
   const data = [];
   const postsRef = collection(db, "posts");
 
-  const postsDocs = await getDocs(query(postsRef, where("email", "==", email)));
+  const postsDocs = await getDocs(query(postsRef, where("user", "==", email)));
 
   postsDocs.docs.map((item) => {
     data.push(item.data());

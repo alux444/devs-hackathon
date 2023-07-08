@@ -41,11 +41,13 @@ const useFirebase = () => {
       const username = userData.username;
       setUser({ loggedIn: true, username: username, email: email });
       localStorage.setItem("loggedInUser", JSON.stringify({ username, email }));
+      return true;
     } else {
       const username = email.split("@")[0];
       createUser(email, true);
       setUser({ loggedIn: true, username: username, email: email });
       localStorage.setItem("loggedInUser", JSON.stringify({ username, email }));
+      return true;
     }
   };
 

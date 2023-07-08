@@ -1,13 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import { Modal } from "@mui/material";
 import useOutsideClick from "../../utils/useOutsideClose";
+import { UserContext } from "../../App";
 
 const Login = ({ open, close }) => {
   const [login, setLogin] = useState(true);
   const modalRef = useRef(null);
+  const { user } = useContext(UserContext);
   useOutsideClick(modalRef, close);
+
+  useEffect(() => {
+    if (user.loggedIn) {
+      close();
+    }
+  }, [user]);
 
   const alternate = () => {
     setLogin(!login);

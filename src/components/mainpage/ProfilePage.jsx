@@ -10,7 +10,7 @@ const ProfilePage = () => {
       {user.email == "" ? (
         <p>Login to view your profile.</p>
       ) : (
-        <Profile user={user.email} />
+        <Profile email={user.email} />
       )}
     </div>
   );
