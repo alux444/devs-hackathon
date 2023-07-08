@@ -3,13 +3,19 @@ import CreatePostModal from "../posts/CreatePostModal";
 import { PageContext, UserContext } from "../../App";
 import AddWorkoutModal from "../posts/AddWorkoutModal";
 import Login from "../loginpage/Login";
+import logo from "../../img/logo.svg";
 
 const SideBar = () => {
   const [openNewPost, setOpenNewPost] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
   const [openNewWorkout, setOpenNewWorkout] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const { setPage } = useContext(PageContext);
+
+  const signOut = () => {
+    setUser({ loggedIn: false, username: "", email: "" });
+    localStorage.removeItem("loggedInUser");
+  };
 
   const closeNewPost = () => {
     setOpenNewPost(false);
@@ -24,15 +30,22 @@ const SideBar = () => {
   };
 
   return (
-    <div className="w-[20vw] border-2 h-[100%] flex flex-col gap-1">
-      SideBar
+    <div className="w-[20vw] overflow-auto lg:p-2 lg:w-[90vw] border-2 h-full lg:h-[20vh] flex gap-2 flex-col lg:flex-row">
+      <img src={logo} />
+      {user.loggedIn && <small>Welcome to Zinstagram, {user.username}</small>}
       {user.loggedIn ? (
-        <button>Sign out</button>
+        <button onClick={() => signOut()}>Sign out</button>
       ) : (
         <button onClick={() => setOpenLogin(true)}>Log in</button>
       )}
-      <button onClick={() => setOpenNewWorkout(true)}>Add Workout</button>
-      <button onClick={() => setOpenNewPost(true)}>Create New Post</button>
+      {user.loggedIn ? (
+        <div className="flex ">
+          <button onClick={() => setOpenNewWorkout(true)}>Add Workout</button>
+          <button onClick={() => setOpenNewPost(true)}>Create New Post</button>
+        </div>
+      ) : (
+        <small>Login to Post!</small>
+      )}
       <button onClick={() => setPage("home")}>Home</button>
       <button onClick={() => setPage("search")}>Search</button>
       <button onClick={() => setPage("workout")}>Workouts</button>

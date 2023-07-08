@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import InteractBar from "./InteractBar";
 import { fetchUserData } from "../../utils/fetchUserData";
 
-const PostContainer = ({ post }) => {
+const CommentPostCont = ({ post }) => {
   const [avatar, setAvatar] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,11 +19,8 @@ const PostContainer = ({ post }) => {
     fetchAvatar();
   }, []);
 
-  const date = post.time ? new Date(post.time.seconds * 1000) : null;
-  const time = post.time ? date.toLocaleString() : "Loading";
-
   return (
-    <div className="items-center justify-center align-center gap-2 flex p-[10px] mt-[10px] mb-[10px] border-[1px] border-solid rounded-[20px] border-white max-w-[90%] lg:flex-col">
+    <div className="items-center justify-center align-center gap-2 flex p-[10px] mt-[10px] mb-[10px] border-[1px] border-solid rounded-[20px] border-white max-w-[90%] lg:flex-col text-sm">
       <div className="flex flex-col">
         <div className="flex flex-col items-center">
           {isLoading ? (
@@ -40,7 +37,6 @@ const PostContainer = ({ post }) => {
           )}
           <div className="flex flex-col gap-2">
             <p>{post.username}</p>
-            <small>{time}</small>
           </div>
         </div>
         <br />
@@ -61,7 +57,7 @@ const PostContainer = ({ post }) => {
                   {exercise.sets.map((set, index) => (
                     <small key={index}>
                       {set.weight}
-                      {set.units} x {set.reps}
+                      {set.units}x{set.reps}
                     </small>
                   ))}
                 </div>
@@ -70,9 +66,8 @@ const PostContainer = ({ post }) => {
           </div>
         </div>
       </div>
-      <InteractBar post={post} />
     </div>
   );
 };
 
-export default PostContainer;
+export default CommentPostCont;

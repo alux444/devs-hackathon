@@ -19,12 +19,16 @@ const useFirebase = () => {
         await addDoc(usersRef, {
           username: username,
           email: email,
+          avatar: "",
+          bio: "",
         });
       } else {
         await addDoc(usersRef, {
           username: username,
           email: email,
           password: password,
+          avatar: "",
+          bio: "",
         });
       }
     }

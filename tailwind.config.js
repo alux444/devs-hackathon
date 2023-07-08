@@ -19,7 +19,11 @@ export default {
       // => @media (max-width: 639px) { ... }
       xs: { max: "500px" },
     },
-    extend: {},
+    extend: {
+      colors: {
+        black: '#000000',
+      },
+    },
   },
   plugins: [],
 };

@@ -41,7 +41,7 @@ const SignUpForm = ({ swap }) => {
       <h2>Sign Up</h2>
       <div>
         <input
-          className="w-[16vw] h-[6vh] border-2 mb-2 mt-2"
+          className="text-black w-[16vw] h-[6vh] border-2 mb-2 mt-2 pl-2"
           type="email"
           onChange={handleEmailChange}
           value={email}
@@ -50,7 +50,7 @@ const SignUpForm = ({ swap }) => {
       </div>
       <div>
         <input
-          className="w-[16vw] h-[6vh] border-2 mb-2"
+          className="text-black w-[16vw] h-[6vh] border-2 mb-2 pl-2"
           type="password"
           onChange={handlePasswordChange}
           value={password}
@@ -59,21 +59,21 @@ const SignUpForm = ({ swap }) => {
       </div>
       <div>
         <input
-          className="w-[16vw] h-[6vh] border-2 mb-2"
+          className="text-black w-[16vw] h-[6vh] border-2 mb-2 pl-2"
           type="password"
           onChange={handleConfirmChange}
           value={confirm}
           placeholder="Re-enter password"
         />
       </div>
-      <button className="mt-2 text-blue-500" type="submit">
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-24 rounded mb-2" type="submit">
         Sign up
       </button>
-      <div className="flex justify-center align-center items-center">
+      <div className="flex justify-center align-center items-center mb-4">
         <GoogleButton />
       </div>
       <div>
-        <button onClick={swap}>
+        <button className="mt-2"onClick={swap}>
           <small>Login?</small>
         </button>
       </div>

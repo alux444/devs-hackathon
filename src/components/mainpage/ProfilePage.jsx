@@ -6,9 +6,9 @@ const ProfilePage = () => {
   const { user } = useContext(UserContext);
 
   return (
-    <div>
+    <div className="flex ">
       {user.email == "" ? (
-        <p>Login to view your profile.</p>
+        <h2>Login to view your profile.</h2>
       ) : (
         <Profile email={user.email} />
       )}

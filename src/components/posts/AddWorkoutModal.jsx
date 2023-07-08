@@ -33,6 +33,7 @@ const AddWorkoutModal = ({ open, close }) => {
     }
 
     console.log(await addWorkout(user.email, exercises, name));
+    close();
   };
 
   const handleName = (e) => {
@@ -63,7 +64,7 @@ const AddWorkoutModal = ({ open, close }) => {
       <div className="w-[100%] h-[100%] items-center align-center justify-center flex">
         <div
           ref={modalRef}
-          className="border-2 border-solid border-white p-[25px] text-center items-center bg-[black]"
+          className="border-2 border-solid border-white p-[25px] text-center items-center bg-[black] "
         >
           {newExercise ? (
             <div className="flex flex-col gap-2">

@@ -7,11 +7,8 @@ const HomePage = () => {
 
   const getPosts = async () => {
     const results = await fetchAllPosts();
-    setData(results);
-  };
-
-  const test = () => {
-    console.log(data);
+    const sortedArray = results.sort((a, b) => b.time.seconds - a.time.seconds);
+    setData(sortedArray);
   };
 
   useEffect(() => {
@@ -23,10 +20,9 @@ const HomePage = () => {
   });
 
   return (
-    <div>
-      HomePage
-      <button onClick={test}>aa</button>
-      {mappedPosts}
+    <div className="overflow-auto flex flex-col lg:w-[90vw] w-[75vw] border-[1px]">
+      <p>Home</p>
+      <div className="flex flex-col items-center">{mappedPosts}</div>
     </div>
   );
 };

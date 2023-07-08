@@ -23,7 +23,7 @@ const CreatePostModal = ({ open, close }) => {
   useOutsideClick(modalRef, close);
 
   const fetchAll = async () => {
-    const data = await fetchAllWorkouts("a@a.com");
+    const data = await fetchAllWorkouts(user.email);
     setWorkouts(data);
   };
 
@@ -74,10 +74,12 @@ const CreatePostModal = ({ open, close }) => {
       await addDoc(postRef, {
         time: serverTimestamp(),
         user: user.email,
+        username: user.username,
         image: url,
         caption: captionData,
         id: postId,
         workout: selectedWorkout,
+        likes: [],
       });
     };
 
