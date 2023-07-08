@@ -29,7 +29,7 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="border-2 h-[10vh]">
+    <div className="border-2">
       <form onSubmit={onSubmit}>
         <div >
           <h3>
