@@ -9,7 +9,8 @@ const Profile = ({ email }) => {
 
   const fetchProfilePosts = async () => {
     const data = await fetchPostUser(email);
-    setProfileData(data);
+    const sortedArray = data.sort((a, b) => b.time.seconds - a.time.seconds);
+    setProfileData(sortedArray);
   };
 
   const fetchBio = async () => {

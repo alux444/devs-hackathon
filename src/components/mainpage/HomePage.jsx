@@ -7,7 +7,8 @@ const HomePage = () => {
 
   const getPosts = async () => {
     const results = await fetchAllPosts();
-    setData(results);
+    const sortedArray = results.sort((a, b) => b.time.seconds - a.time.seconds);
+    setData(sortedArray);
   };
 
   useEffect(() => {
