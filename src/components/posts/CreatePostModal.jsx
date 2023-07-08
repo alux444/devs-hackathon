@@ -96,11 +96,15 @@ const CreatePostModal = ({ open, close }) => {
   };
 
   const mappedWorkouts = workouts.map((workout) => (
-    <div key={workout.id}>
+    <div key={workout.id} className="flex gap-2 justify-center">
       <button type="button" onClick={() => setSelectedWorkout(workout)}>
         {workout.name}
       </button>
-      <button type="button" onClick={() => deleteSelected(workout.id)}>
+      <button
+        className=" hover:border-red-400"
+        type="button"
+        onClick={() => deleteSelected(workout.id)}
+      >
         <DeleteIcon />
       </button>
     </div>

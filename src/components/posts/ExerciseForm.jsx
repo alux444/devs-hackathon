@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const ExerciseForm = ({ submit, exit }) => {
   const [sets, setSets] = useState([]);
   const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
   const [thisSet, setThisSet] = useState({ weight: 0, reps: 0, units: "kg" });
 
   const handleName = (e) => {
@@ -41,6 +42,13 @@ const ExerciseForm = ({ submit, exit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setMessage("");
+
+    if (name == "") {
+      setMessage("Exercise name required.");
+      return;
+    }
+
     const exercise = { name: name, sets: sets };
     submit(exercise);
     exit();
@@ -87,6 +95,7 @@ const ExerciseForm = ({ submit, exit }) => {
       <button className="w-[50%]" onClick={handleSubmit}>
         Submit
       </button>
+      {message}
     </div>
   );
 };
