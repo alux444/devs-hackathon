@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../App";
 import { addDoc, collection, getDocs, where } from "firebase/firestore";
 import { db } from "../../fbConfig";

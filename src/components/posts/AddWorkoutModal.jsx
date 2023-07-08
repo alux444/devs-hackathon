@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../fbConfig";
 
-const CreatePostModal = ({ open, close }) => {
+const AddWorkoutModal = () => {
   const { user } = useContext(UserContext);
   const [caption, setCaption] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
@@ -17,17 +17,6 @@ const CreatePostModal = ({ open, close }) => {
   const modalRef = useRef(null);
 
   useOutsideClick(modalRef, close);
-
-  const onChangeCaption = (e) => {
-    if (e.target.value.length < 250) {
-      setCaption(e.target.value);
-    }
-  };
-
-  const onChangeImage = (e) => {
-    const file = e.target.files[0];
-    setSelectedImage(file);
-  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -71,33 +60,11 @@ const CreatePostModal = ({ open, close }) => {
           ref={modalRef}
           className="border-2 border-solid border-white p-[25px] text-center items-center"
         >
-          <form onSubmit={onSubmit}>
-            <label className="block mb-2">Select Image (optional)</label>
-            <div className="flex items-center justify-center mb-2">
-              <input
-                type="file"
-                onChange={onChangeImage}
-                accept=".jpg,.jpeg,.png"
-                className="border-[1px] border-solid border-white w-[100%] p-[10px]"
-              />
-              <br />
-            </div>
-            <div>
-              <label className="block mb-2">Select Workout</label>
-            </div>
-            <label className="block mb-2">Enter caption</label>
-            <textarea
-              value={caption}
-              onChange={onChangeCaption}
-              className="border-[1px] border-solid border-white w-[100%] p-[10px] h-[20vh]"
-            />
-            {uploading && <small>Uploading your post...</small>}
-            <button type="submit">Post!</button>
-          </form>
+          <form onSubmit={onSubmit}></form>
         </div>
       </div>
     </Modal>
   );
 };
 
-export default CreatePostModal;
+export default AddWorkoutModal;
