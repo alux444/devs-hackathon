@@ -76,7 +76,7 @@ const AddWorkoutModal = ({ open, close }) => {
               <h2 className="text-xl">New Workout</h2>
               <form className="flex flex-col gap-2" onSubmit={onSubmit}>
                 <label>Workout Name</label>
-                <input type="text" value={name} onChange={handleName} />
+                <input className="text-black" type="text" value={name} onChange={handleName} />
                 {mapped}
                 <button type="button" onClick={() => setNewExercise(true)}>
                   Add exercise

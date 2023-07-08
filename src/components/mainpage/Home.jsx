@@ -10,12 +10,16 @@ const Home = () => {
   const { page } = useContext(PageContext);
 
   return (
-    <div className="w-[90vw] h-[90vh] flex lg:flex-col border-2">
-      <SideBar />
-      {page == "home" && <HomePage />}
-      {page == "search" && <SearchPage />}
-      {page == "workout" && <WorkoutsPage />}
-      {page == "profile" && <ProfilePage />}
+    <div className="w-[90vw] h-[90vh] flex lg:flex-col  justify-center">
+      <div className="h-[90vh] lg:h-[20vh]">
+        <SideBar />
+      </div>
+      <div className="w-[75vw] lg:w-[90vw] h-full lg:h-[75vh]">
+        {page == "home" && <HomePage />}
+        {page == "search" && <SearchPage />}
+        {page == "workout" && <WorkoutsPage />}
+        {page == "profile" && <ProfilePage />}
+      </div>
     </div>
   );
 };
