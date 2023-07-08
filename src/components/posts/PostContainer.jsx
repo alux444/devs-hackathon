@@ -51,11 +51,7 @@ const PostContainer = ({ post }) => {
         <div>
           <p>"{post.caption}"</p>
         </div>
-<<<<<<< HEAD
-        <div className="rounded-lg border-2">
-=======
         <div className="border-[1px] p-2">
->>>>>>> f471c11 (user display)
           <h2>{post.workout.name}</h2>
           <div className="flex flex-wrap justify-center align-center items-center">
             {post.workout.exercises.map((exercise) => (
