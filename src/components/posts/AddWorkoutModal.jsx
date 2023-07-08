@@ -61,7 +61,7 @@ const AddWorkoutModal = ({ open, close }) => {
 
   return (
     <Modal open={open}>
-      <div className="w-[100%] h-[100%] items-center align-center justify-center flex border-2">
+      <div className="w-[100%] h-[100%] items-center align-center justify-center flex">
         <div
           ref={modalRef}
           className="border-2 border-solid border-white p-[25px] text-center items-center bg-[black] max-h-[90%] overflow-auto"
@@ -75,7 +75,7 @@ const AddWorkoutModal = ({ open, close }) => {
             </div>
           ) : (
             <div>
-              <h2 className="text-xl">New Workout</h2>
+              <h2 className="mini">New Workout</h2>
               <form className="flex flex-col gap-2" onSubmit={onSubmit}>
                 <label>Workout Name</label>
                 <input type="text" value={name} onChange={handleName} />

@@ -57,22 +57,26 @@ const WorkoutsPage = () => {
 
   return (
     <div className="h-full flex flex-col gap-3 items-center justify-center w-[75vw] lg:w-[90vw] border-[1px] lg:h-[82vh]">
-      <h2 className="text-xl">Exercise Finder</h2>
+      <h2 className="title">Exercise Finder</h2>
       {!workout && !exercise && (
-        <>
+        <div className="item fade-in">
           <p>Im looking for...</p>
           <div className="flex gap-3">
             <button onClick={() => setWorkout(true)}>A Workout</button>
             <button onClick={() => setExercise(true)}>An Exercise</button>
           </div>
-        </>
+        </div>
       )}
       {exercise && !chosen && (
-        <div className="flex justify-center flex-col items-center gap-4">
+        <div className="flex justify-center flex-col items-center gap-4 fade-in">
           <small>Select Bodypart</small>
           <div className="flex flex-wrap justify-center w-[50%] gap-2">
             {bodyParts.map((bodypart) => (
-              <button onClick={() => selectChoice(bodypart)} key={bodypart}>
+              <button
+                onClick={() => selectChoice(bodypart)}
+                key={bodypart}
+                className="fade-in"
+              >
                 {bodypart}
               </button>
             ))}
@@ -83,11 +87,15 @@ const WorkoutsPage = () => {
         </div>
       )}
       {workout && !chosen && (
-        <div className="flex justify-center flex-col items-center gap-4">
+        <div className="flex justify-center flex-col items-center gap-4 fade-in">
           <small>Select workout</small>
           <div className="flex flex-wrap justify-center w-[50%] gap-2">
             {workoutChoices.map((choice) => (
-              <button onClick={() => selectChoice(choice)} key={choice}>
+              <button
+                onClick={() => selectChoice(choice)}
+                key={choice}
+                className="fade-in"
+              >
                 {choice}
               </button>
             ))}
@@ -98,7 +106,7 @@ const WorkoutsPage = () => {
         </div>
       )}
       {chosen && (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 fade-in">
           <small>Your search:</small>
           <p>
             {chosen} {exercise ? "Exercises" : "Workouts"}

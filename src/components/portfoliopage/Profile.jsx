@@ -44,7 +44,7 @@ const Profile = ({ email, small }) => {
           src={userInfo.avatar == "" ? noPfp : userInfo.avatar}
           className="h-[20vh]"
         />
-        <h2>{userInfo.username}</h2>
+        <h2 className="mini">{userInfo.username}</h2>
         <p>{userInfo.bio}</p>
       </div>
       <div className="border-[1px] p-2 overflow-auto flex flex-col items-center max-h-[60vh] max-w-[90%]">

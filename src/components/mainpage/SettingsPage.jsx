@@ -53,6 +53,7 @@ const SettingsPage = () => {
 
   return (
     <div className="h-full flex flex-col gap-3 items-center justify-center w-[75vw] lg:w-[90vw] border-[1px] p-3 lg:h-[82vh]">
+      <h2 className="title">Settings</h2>
       <div className="flex align-center">
         <label htmlFor="image-upload" className="relative">
           <div className="file-input-mask">
