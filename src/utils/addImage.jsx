@@ -1,7 +1,9 @@
 import { ref, getStorage, uploadBytes, getDownloadURL } from "firebase/storage";
+import { v4 as uuidv4 } from "uuid";
 
-const addImage = async (imageFile, id) => {
+const addImage = async (imageFile) => {
   const storage = getStorage();
+  const id = uuidv4();
   const storageRef = ref(storage, "images/" + id);
   let url = "";
 
