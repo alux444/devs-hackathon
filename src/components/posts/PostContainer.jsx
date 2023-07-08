@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InteractBar from "./InteractBar";
-import { fetchUserAvatar } from "../../utils/fetchUserAvatar";
+import { fetchUserData } from "../../utils/fetchUserData";
 
 const PostContainer = ({ post }) => {
   const [avatar, setAvatar] = useState("");
@@ -9,15 +9,14 @@ const PostContainer = ({ post }) => {
   useEffect(() => {
     const fetchAvatar = async () => {
       try {
-        const fetchedAvatar = await fetchUserAvatar(post.user);
-        setAvatar(fetchedAvatar);
+        const fetchedAvatar = await fetchUserData(post.user);
+        setAvatar(fetchedAvatar.avatar);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching avatar:", error);
       }
     };
     fetchAvatar();
-    console.log(post.user);
   }, []);
 
   const date = post.time ? new Date(post.time.seconds * 1000) : null;

@@ -1,11 +1,12 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../fbConfig";
 
-export const fetchUserAvatar = async (email) => {
+export const fetchUserData = async (email) => {
   const usersRef = collection(db, "users");
 
   const usersDocs = await getDocs(query(usersRef, where("email", "==", email)));
 
   const userData = usersDocs.docs[0].data();
-  return userData.avatar;
+  delete userData.password;
+  return userData;
 };
