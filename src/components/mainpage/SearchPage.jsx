@@ -37,7 +37,9 @@ const SearchPage = () => {
         value={username}
       />
       <h3 className="font-bold text-xl mt-4">Users</h3>
-      <div className="flex flex-col items-center">{display}</div>
+      <div className="flex flex-col items-center border-[1px] p-3 rounded-lg overflow-auto max-h-[50vh]">
+        {display}
+      </div>
     </div>
   );
 };

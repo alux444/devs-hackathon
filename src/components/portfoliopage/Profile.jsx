@@ -38,7 +38,13 @@ const Profile = ({ email }) => {
         <p>{bio}</p>
       </div>
       <div className="border-2 overflow-auto flex flex-col items-center h-[60vh]">
-        {posts}
+        {profileData.length == 0 ? (
+          <div>
+            <p>No posts yet :(</p>
+          </div>
+        ) : (
+          posts
+        )}
       </div>
     </div>
   );

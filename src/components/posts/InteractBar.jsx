@@ -29,9 +29,11 @@ const InteractBar = ({ post }) => {
       <div>
         <FavoriteIcon /> {currentLikes}
       </div>
-      <button onClick={handleLike}>
-        <FavoriteBorderIcon />
-      </button>
+      {user.loggedIn && (
+        <button onClick={handleLike}>
+          <FavoriteBorderIcon />
+        </button>
+      )}
       <button onClick={() => setOpenComments(true)}>
         <CommentIcon />
       </button>
