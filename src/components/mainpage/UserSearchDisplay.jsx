@@ -24,7 +24,9 @@ const UserSearchDisplay = ({ user }) => {
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="absolute bg-black rounded-lg p-4">
             <Profile email={user.email} />
-            <button onClick={() => setShowProfile(false)}>Close</button>
+            <button className="mt-3" onClick={() => setShowProfile(false)}>
+              Close
+            </button>
           </div>
         </div>
       )}

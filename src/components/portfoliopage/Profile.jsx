@@ -33,7 +33,7 @@ const Profile = ({ email }) => {
   ));
 
   return (
-    <div className="h-full flex flex-col items-center justify-between max-w-[75vw] lg:max-w-[90vw]">
+    <div className="h-full flex flex-col items-center justify-between max-w-[75vw] lg:max-w-[90vw] border-[1px]">
       <div className="flex items-center flex-col p-2">
         <img
           src={
