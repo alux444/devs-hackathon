@@ -4,7 +4,11 @@ import PostContainer from "../posts/PostContainer";
 import { fetchUserData } from "../../utils/fetchUserData";
 
 const Profile = ({ email }) => {
-  const [bio, setBio] = useState("");
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+    bio: "",
+    email: "",
+  });
   const [profileData, setProfileData] = useState([]);
 
   const fetchProfilePosts = async () => {
@@ -13,14 +17,14 @@ const Profile = ({ email }) => {
     setProfileData(sortedArray);
   };
 
-  const fetchBio = async () => {
+  const fetchInfos = async () => {
     const data = await fetchUserData(email);
-    setBio(data.bio);
+    setUserInfo(data);
   };
 
   useEffect(() => {
     fetchProfilePosts();
-    fetchBio();
+    fetchInfos();
   }, []);
 
   const posts = profileData.map((post) => (
@@ -34,11 +38,17 @@ const Profile = ({ email }) => {
           src="https://firebasestorage.googleapis.com/v0/b/devs-hackathon.appspot.com/o/images%2Fdefault_pfp.png?alt=media&token=0b96cfc4-fd7d-4a3b-a716-b49f46d302a5"
           className="w-[10vw] rounded-[25px]"
         />
-        <h2>{email}</h2>
-        <p>{bio}</p>
+        <h2>{userInfo.username}</h2>
+        <p>{userInfo.bio}</p>
       </div>
       <div className="border-2 overflow-auto flex flex-col items-center h-[60vh]">
-        {posts}
+        {profileData.length == 0 ? (
+          <div>
+            <p>No posts yet :(</p>
+          </div>
+        ) : (
+          posts
+        )}
       </div>
     </div>
   );
