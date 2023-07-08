@@ -10,7 +10,7 @@ const Home = () => {
   const { page } = useContext(PageContext);
 
   return (
-    <div className="w-[85vw] h-[90vh] flex justify-center">
+    <div className="w-[90vw] h-[90vh] flex lg:flex-col justify-center">
       <SideBar />
       {page == "home" && <HomePage />}
       {page == "search" && <SearchPage />}

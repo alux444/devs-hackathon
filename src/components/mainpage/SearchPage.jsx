@@ -18,8 +18,8 @@ const SearchPage = () => {
   function handleUsernameChange(event) {
     setUsername(event.target.value);
   }
-  const filterExercises = users.filter((val)=>{
-    if (val.username.toLowerCase().includes(username.toLowerCase())){
+  const filterExercises = users.filter((val) => {
+    if (val.username.toLowerCase().includes(username.toLowerCase())) {
       return val;
     }
   })
@@ -32,7 +32,7 @@ const SearchPage = () => {
   })
 
   return (
-    <div className="flex flex-col items-center justify-center"> 
+    <div className="flex flex-col items-center justify-center">
       <input
         className="w-[16vw] h-[6vh] border-2 rounded-full mb-4"
         onChange={handleUsernameChange}
@@ -46,10 +46,3 @@ const SearchPage = () => {
 };
 
 export default SearchPage;
-
-
-
-
-
-
-
