@@ -11,8 +11,15 @@ import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import useOutsideClick from "../../utils/useOutsideClose";
+import vertical from "../../img/vertical.svg";
 
 const SideBar = () => {
+  const backgroundImage = {
+    backgroundImage: `url(${vertical})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
+
   const [openNewPost, setOpenNewPost] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
   const [openNewWorkout, setOpenNewWorkout] = useState(false);
@@ -45,13 +52,11 @@ const SideBar = () => {
   };
 
   return (
-    <div className="w-[11vw] overflow-auto lg:w-[100%] border-[1px] h-full lg:h-[10vh] flex flex-col lg:flex-row items-center p-2 justify-between">
+    <div
+      className="w-[11vw] overflow-auto lg:w-[100%] border-[1px] h-full lg:h-[10vh] flex flex-col lg:flex-row items-center p-2 justify-between"
+      style={backgroundImage}
+    >
       <img src={logo} className="max-w-[15vw] lg:max-h-[8vh]" />
-      {user.loggedIn && (
-        <small className="block lg:hidden">
-          Welcome to Zinstagram, {user.username}
-        </small>
-      )}
 
       {!user.loggedIn && (
         <button onClick={() => setOpenLogin(true)}>Log in</button>
