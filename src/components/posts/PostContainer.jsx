@@ -51,7 +51,7 @@ const PostContainer = ({ post }) => {
         <div>
           <p>"{post.caption}"</p>
         </div>
-        <div className="p-4 rounded-lg border-2">
+        <div className="rounded-lg border-[1px] p-2">
           <h2>{post.workout.name}</h2>
           <div className="flex flex-wrap justify-center align-center items-center">
             {post.workout.exercises.map((exercise) => (
@@ -61,7 +61,7 @@ const PostContainer = ({ post }) => {
                   {exercise.sets.map((set, index) => (
                     <small key={index}>
                       {set.weight}
-                      {set.units}x{set.reps}
+                      {set.units} x {set.reps}
                     </small>
                   ))}
                 </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useFirebase from "../../utils/useFirebase";
 import { useEffect } from "react";
+import UserSearchDisplay from "./UserSearchDisplay";
 const SearchPage = () => {
   const [username, setUsername] = useState("");
   const { fetchAllUsers } = useFirebase();
@@ -22,19 +23,15 @@ const SearchPage = () => {
     if (val.username.toLowerCase().includes(username.toLowerCase())) {
       return val;
     }
-  })
-  const display = filterExercises.map((guy)=>{
-    return(
-      <div className="mt-2" key={guy.username}>
-        {guy.username}
-      </div>
-    )
-  })
+  });
+  const display = filterExercises.map((user) => {
+    return <UserSearchDisplay user={user} key={user.email} />;
+  });
 
   return (
-    <div className="ml-5 flex flex-col items-center justify-center">
+    <div className="text-black flex flex-col items-center justify-center w-[75vw] lg:w-[90vw]">
       <input
-        className="text-black w-[16vw] h-[6vh] border-2 rounded-full pl-5"
+        className="w-[50vw] h-[6vh] border-2 rounded-full pl-5 mt-2"
         onChange={handleUsernameChange}
         placeholder="Search for a user.."
         value={username}
