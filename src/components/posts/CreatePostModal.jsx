@@ -1,15 +1,17 @@
 import { Modal } from "@mui/material";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import useOutsideClick from "../../utils/useOutsideClose";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { UserContext } from "../../App";
 import { v4 as uuidv4 } from "uuid";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../fbConfig";
+import { fetchAllWorkouts } from "../../utils/fetchAllWorkouts";
 
 const CreatePostModal = ({ open, close }) => {
   const { user } = useContext(UserContext);
   const [caption, setCaption] = useState("");
+  const [workouts, setWorkouts] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploading, setUploading] = useState(false);
   const storage = getStorage();
@@ -17,6 +19,15 @@ const CreatePostModal = ({ open, close }) => {
   const modalRef = useRef(null);
 
   useOutsideClick(modalRef, close);
+
+  const fetchAll = async () => {
+    const data = await fetchAllWorkouts("a@a.com");
+    setWorkouts(data);
+  };
+
+  useEffect(() => {
+    fetchAll();
+  }, []);
 
   const onChangeCaption = (e) => {
     if (e.target.value.length < 250) {
@@ -64,12 +75,18 @@ const CreatePostModal = ({ open, close }) => {
     close();
   };
 
+  const mappedWorkouts = workouts.map((workout) => (
+    <div key={workout.id}>
+      <button>{workout.name}</button>
+    </div>
+  ));
+
   return (
     <Modal open={open}>
       <div className="w-[100%] h-[100%] items-center align-center justify-center flex">
         <div
           ref={modalRef}
-          className="border-2 border-solid border-white p-[25px] text-center items-center"
+          className="border-2 border-solid border-white p-[25px] text-center items-center bg-[black]"
         >
           <form onSubmit={onSubmit}>
             <label className="block mb-2">Select Image (optional)</label>
@@ -84,6 +101,7 @@ const CreatePostModal = ({ open, close }) => {
             </div>
             <div>
               <label className="block mb-2">Select Workout</label>
+              {mappedWorkouts}
             </div>
             <label className="block mb-2">Enter caption</label>
             <textarea
@@ -94,6 +112,7 @@ const CreatePostModal = ({ open, close }) => {
             {uploading && <small>Uploading your post...</small>}
             <button type="submit">Post!</button>
           </form>
+          {mappedWorkouts}
         </div>
       </div>
     </Modal>
