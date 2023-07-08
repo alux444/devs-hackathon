@@ -41,7 +41,7 @@ const SignUpForm = ({ swap }) => {
       <h2>Sign Up</h2>
       <div>
         <input
-          className="w-[16vw] h-[6vh] border-2 mb-2 mt-2"
+          className="text-black w-[16vw] h-[6vh] border-2 mb-2 mt-2"
           type="email"
           onChange={handleEmailChange}
           value={email}
@@ -50,7 +50,7 @@ const SignUpForm = ({ swap }) => {
       </div>
       <div>
         <input
-          className="w-[16vw] h-[6vh] border-2 mb-2"
+          className="text-black w-[16vw] h-[6vh] border-2 mb-2"
           type="password"
           onChange={handlePasswordChange}
           value={password}
