@@ -7,7 +7,7 @@ const PostContainer = ({ post }) => {
   return (
     <div className="items-center justify-center align-center flex flex-col p-[10px] mt-[10px] mb-[10px] border-[1px] border-solid border-white w-[90%]">
       <p>
-        {post.user} at {time}
+        {post.username} at {time}
       </p>
       <br />
       <img className="max-w-[70vw] max-h-[500px]" src={post.image} />
