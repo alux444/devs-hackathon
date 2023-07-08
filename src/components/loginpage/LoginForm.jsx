@@ -2,50 +2,66 @@ import React from "react";
 import { useState } from "react";
 import useFirebase from "../../utils/useFirebase";
 
-const LoginForm = () => {
+const LoginForm = ({ swap }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const { attemptLogin } = useFirebase();
 
-  async function onSubmit(event){
+  async function onSubmit(event) {
     event.preventDefault();
     setMessage("");
     const loginSuccess = await attemptLogin(email, password);
-    if (!loginSuccess){
+    if (!loginSuccess) {
       setMessage("Invalid login details");
     }
-    console.log("YOUR IN")
+    console.log("YOUR IN");
   }
-  
-  function handleEmailChange(event){
+
+  function handleEmailChange(event) {
     console.log(email);
     setEmail(event.target.value);
   }
 
-  function handlePasswordChange(event){
+  function handlePasswordChange(event) {
     console.log(password);
     setPassword(event.target.value);
   }
 
   return (
-    <div className="border-2">
+    <div>
+      <h2>Login</h2>
       <form onSubmit={onSubmit}>
-        <div >
-          <input className="w-[16vw] h-[6vh] border-2 mb-2 mt-4" type="email" onChange={handleEmailChange} placeholder="Email"/>
+        <div>
+          <input
+            className="w-[16vw] h-[6vh] mb-2 mt-4"
+            type="email"
+            onChange={handleEmailChange}
+            placeholder="Email"
+          />
         </div>
 
-        <div >
-          <input className = "w-[16vw] h-[6vh] border-2 mb-2" type="password" onChange={handlePasswordChange} placeholder="Password"/>
+        <div>
+          <input
+            className="w-[16vw] h-[6vh] border-2 mb-2"
+            type="password"
+            onChange={handlePasswordChange}
+            placeholder="Password"
+          />
         </div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-24 rounded mb-2"type="submit" >
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-24 rounded mb-2"
+          type="submit"
+        >
           Log in
         </button>
-        <h4>
-          {message}
-        </h4>
+        <div>
+          <button onClick={swap}>
+            <small>Sign up?</small>
+          </button>
+        </div>
+        <h4>{message}</h4>
       </form>
-
     </div>
   );
 };

@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
 import CreatePostModal from "../posts/CreatePostModal";
-import { PageContext } from "../../App";
+import { PageContext, UserContext } from "../../App";
 import AddWorkoutModal from "../posts/AddWorkoutModal";
+import Login from "../loginpage/Login";
 
 const SideBar = () => {
   const [openNewPost, setOpenNewPost] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
   const [openNewWorkout, setOpenNewWorkout] = useState(false);
+  const { user } = useContext(UserContext);
   const { setPage } = useContext(PageContext);
 
   const closeNewPost = () => {
@@ -16,9 +19,18 @@ const SideBar = () => {
     setOpenNewWorkout(false);
   };
 
+  const closeLogin = () => {
+    setOpenLogin(false);
+  };
+
   return (
     <div className="w-[20vw] border-2 h-[100%] flex flex-col gap-1">
       SideBar
+      {user.loggedIn ? (
+        <button>Sign out</button>
+      ) : (
+        <button onClick={() => setOpenLogin(true)}>Log in</button>
+      )}
       <button onClick={() => setOpenNewWorkout(true)}>Add Workout</button>
       <button onClick={() => setOpenNewPost(true)}>Create New Post</button>
       <button onClick={() => setPage("home")}>Home</button>
@@ -32,6 +44,7 @@ const SideBar = () => {
       {openNewWorkout && (
         <AddWorkoutModal open={openNewWorkout} close={closeAddWorkout} />
       )}
+      {openLogin && <Login open={openLogin} close={closeLogin} />}
     </div>
   );
 };
