@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import InteractBar from "./InteractBar";
+import noPfp from "../../img/default_pfp.png";
 import { fetchUserData } from "../../utils/fetchUserData";
 
 const CommentPostCont = ({ post }) => {
@@ -26,14 +26,7 @@ const CommentPostCont = ({ post }) => {
           {isLoading ? (
             <span>Loading avatar...</span>
           ) : (
-            <img
-              src={
-                avatar === ""
-                  ? "https://firebasestorage.googleapis.com/v0/b/devs-hackathon.appspot.com/o/images%2Fdefault_pfp.png?alt=media&token=0b96cfc4-fd7d-4a3b-a716-b49f46d302a5"
-                  : avatar
-              }
-              className="w-[10vw]"
-            />
+            <img src={avatar === "" ? noPfp : avatar} className="w-[10vw]" />
           )}
           <div className="flex flex-col gap-2">
             <p>{post.username}</p>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchPostUser } from "../../utils/fetchPostUser";
 import PostContainer from "../posts/PostContainer";
 import { fetchUserData } from "../../utils/fetchUserData";
+import noPfp from "../../img/default_pfp.png";
 
 const Profile = ({ email }) => {
   const [userInfo, setUserInfo] = useState({
@@ -33,15 +34,11 @@ const Profile = ({ email }) => {
   ));
 
   return (
-    <div className="h-full flex flex-col items-center justify-between max-w-[75vw] lg:max-w-[90vw]">
+    <div className="h-full flex flex-col items-center justify-between w-[75vw] lg:w-[90vw] border-[1px]">
       <div className="flex items-center flex-col p-2">
         <img
-          src={
-            userInfo.avatar == ""
-              ? "https://firebasestorage.googleapis.com/v0/b/devs-hackathon.appspot.com/o/images%2Fdefault_pfp.png?alt=media&token=0b96cfc4-fd7d-4a3b-a716-b49f46d302a5"
-              : userInfo.avatar
-          }
-          className="w-[5vw] lg:w-[9vw]"
+          src={userInfo.avatar == "" ? noPfp : userInfo.avatar}
+          className="h-[20vh]"
         />
         <h2>{userInfo.username}</h2>
         <p>{userInfo.bio}</p>
