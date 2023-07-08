@@ -1,4 +1,5 @@
 import React from "react";
+import InteractBar from "./InteractBar";
 
 const PostContainer = ({ post }) => {
   const date = post.time ? new Date(post.time.seconds * 1000) : null;
@@ -33,6 +34,7 @@ const PostContainer = ({ post }) => {
           ))}
         </div>
       </div>
+      <InteractBar />
     </div>
   );
 };
