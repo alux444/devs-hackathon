@@ -12,30 +12,60 @@ const AddWorkoutModal = ({ open, close }) => {
   const { user } = useContext(UserContext);
   const [exercises, setExercises] = useState([]);
   const [newExercise, setNewExercise] = useState(false);
-  const [caption, setCaption] = useState("");
   const postRef = collection(db, "workouts");
   const modalRef = useRef(null);
 
   useOutsideClick(modalRef, close);
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    const postId = uuidv4();
-
-    const captionData = caption;
-
-    const createNewPost = async () => {
-      await addDoc(postRef, {
-        time: serverTimestamp(),
-        user: user.email,
-        caption: captionData,
-        id: postId,
-      });
-    };
-
-    createNewPost();
-    close();
+  const addExercise = (exercise) => {
+    const tempExercises = [...exercises, exercise];
+    setExercises(tempExercises);
   };
+
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const postId = uuidv4();
+
+  //   const captionData = caption;
+
+  //   const createNewPost = async () => {
+  //     await addDoc(postRef, {
+  //       time: serverTimestamp(),
+  //       user: user.email,
+  //       caption: captionData,
+  //       id: postId,
+  //     });
+  //   };
+
+  //   createNewPost();
+  //   close();
+  // };
+
+  const closeForm = () => {
+    setNewExercise(false);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(exercises);
+  };
+
+  const mapped = exercises.map((exercise, index) => (
+    <div key={index}>
+      <p>{exercise.name}</p>
+      {exercise.sets.map((set) => (
+        <div
+          className="flex gap-3 flex-wrap justify-center align-center items-center"
+          key={index}
+        >
+          <small>
+            {set.weight}
+            {set.units} x {set.reps}
+          </small>
+        </div>
+      ))}
+    </div>
+  ));
 
   return (
     <Modal open={open}>
@@ -46,10 +76,8 @@ const AddWorkoutModal = ({ open, close }) => {
         >
           {newExercise ? (
             <div className="flex flex-col gap-2">
-              <label>Exercise Name</label>
-              <input type="text" />
-              <ExerciseForm />
-              <button onClick={() => setNewExercise(false)}>Cancel</button>
+              <ExerciseForm submit={addExercise} exit={closeForm} />
+              <button onClick={closeForm}>Cancel</button>
             </div>
           ) : (
             <div>
@@ -57,6 +85,7 @@ const AddWorkoutModal = ({ open, close }) => {
               <form className="flex flex-col gap-2" onSubmit={onSubmit}>
                 <label>Workout Name</label>
                 <input type="text" />
+                {mapped}
                 <button type="button" onClick={() => setNewExercise(true)}>
                   Add exercise
                 </button>
