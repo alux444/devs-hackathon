@@ -33,6 +33,7 @@ const SignUpForm = () => {
     }
     await createUser(email, false, password);
     const loginSuccess = await attemptLogin(email, password);
+    console.log("your in (signup)")
   }
 
 

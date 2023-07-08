@@ -15,7 +15,7 @@ const LoginForm = () => {
     if (!loginSuccess){
       setMessage("Invalid login details");
     }
-    // more stuff
+    console.log("YOUR IN")
   }
   
   function handleEmailChange(event){
@@ -29,7 +29,7 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
+    <div className="border-2 h-[10vh]">
       <form onSubmit={onSubmit}>
         <div >
           <h3>
