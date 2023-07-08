@@ -74,11 +74,11 @@ const SideBar = () => {
         <button onClick={() => setPage("search")}>
           <SearchIcon />
         </button>
+        <button onClick={() => setPage("workout")}>
+          <FitnessCenterIcon />
+        </button>
         {user.loggedIn && (
           <>
-            <button onClick={() => setPage("workout")}>
-              <FitnessCenterIcon />
-            </button>
             <button onClick={() => setPage("profile")}>
               <AccountCircleIcon />
             </button>
