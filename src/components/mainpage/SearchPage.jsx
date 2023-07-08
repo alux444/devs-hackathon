@@ -29,7 +29,7 @@ const SearchPage = () => {
   });
 
   return (
-    <div className="text-white flex flex-col  gap-3 items-center justify-center w-[75vw] lg:w-[90vw] border-[1px]">
+    <div className="text-white flex flex-col  gap-3 items-center justify-center w-[75vw] lg:w-[90vw] lg:h-[82vh] border-[1px]">
       <h2 className="font-bold text-xl mt-4">User Search</h2>
       <input
         className="w-[50vw] h-[6vh] border-2 rounded-full pl-5 mt-2"

@@ -45,7 +45,7 @@ const SideBar = () => {
   };
 
   return (
-    <div className="w-[20vw] overflow-auto lg:w-[100%] border-[1px] h-full lg:h-[10vh] flex flex-col lg:flex-row items-center p-2 justify-between">
+    <div className="w-[11vw] overflow-auto lg:w-[100%] border-[1px] h-full lg:h-[10vh] flex flex-col lg:flex-row items-center p-2 justify-between">
       <img src={logo} className="max-w-[15vw] lg:max-h-[8vh]" />
       {user.loggedIn && (
         <small className="block lg:hidden">
@@ -56,13 +56,11 @@ const SideBar = () => {
       {!user.loggedIn && (
         <button onClick={() => setOpenLogin(true)}>Log in</button>
       )}
-      {user.loggedIn ? (
-        <div className="flex flex-col lg:hidden">
+      {user.loggedIn && (
+        <div className="flex flex-col lg:flex-row gap-1">
           <button onClick={() => setOpenNewWorkout(true)}>New Workout</button>
           <button onClick={() => setOpenNewPost(true)}>New Post</button>
         </div>
-      ) : (
-        <small>Login to Post!</small>
       )}
       <div className="flex flex-col lg:hidden">
         <button onClick={() => setPage("home")}>
@@ -71,15 +69,19 @@ const SideBar = () => {
         <button onClick={() => setPage("search")}>
           <SearchIcon />
         </button>
-        <button onClick={() => setPage("workout")}>
-          <FitnessCenterIcon />
-        </button>
-        <button onClick={() => setPage("profile")}>
-          <AccountCircleIcon />
-        </button>
-        <button onClick={() => setPage("settings")}>
-          <SettingsIcon />
-        </button>
+        {user.loggedIn && (
+          <>
+            <button onClick={() => setPage("workout")}>
+              <FitnessCenterIcon />
+            </button>
+            <button onClick={() => setPage("profile")}>
+              <AccountCircleIcon />
+            </button>
+            <button onClick={() => setPage("settings")}>
+              <SettingsIcon />
+            </button>
+          </>
+        )}
       </div>
 
       {showMenu && (
@@ -94,15 +96,19 @@ const SideBar = () => {
             <button onClick={() => setPage("search")}>
               <SearchIcon />
             </button>
-            <button onClick={() => setPage("workout")}>
-              <FitnessCenterIcon />
-            </button>
-            <button onClick={() => setPage("profile")}>
-              <AccountCircleIcon />
-            </button>
-            <button onClick={() => setPage("settings")}>
-              <SettingsIcon />
-            </button>
+            {user.loggedIn && (
+              <>
+                <button onClick={() => setPage("workout")}>
+                  <FitnessCenterIcon />
+                </button>
+                <button onClick={() => setPage("profile")}>
+                  <AccountCircleIcon />
+                </button>
+                <button onClick={() => setPage("settings")}>
+                  <SettingsIcon />
+                </button>
+              </>
+            )}
             <button onClick={() => setShowMenu(false)}>X</button>
           </div>
         </div>

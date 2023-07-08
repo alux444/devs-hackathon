@@ -35,7 +35,7 @@ const LoginForm = ({ swap }) => {
       <form onSubmit={onSubmit}>
         <div>
           <input
-            className="text-black w-[16vw] h-[6vh] mb-2 mt-4 pl-2"
+            className="w-[25vw] lg:w-[90%] h-[6vh] mb-2 mt-4 pl-2"
             type="email"
             onChange={handleEmailChange}
             placeholder="Email"
@@ -44,7 +44,7 @@ const LoginForm = ({ swap }) => {
 
         <div>
           <input
-            className="text-black w-[16vw] h-[6vh] border-2 mb-2 pl-2"
+            className="w-[25vw] lg:w-[90%] h-[6vh] border-2 mb-2 pl-2"
             type="password"
             onChange={handlePasswordChange}
             placeholder="Password"
