@@ -25,7 +25,7 @@ const Comment = ({ comment }) => {
 
   return (
     <div>
-      <div className="flex align-center items-center gap-3">
+      <div className="flex align-center items-center gap-3 justify-center p-1">
         <div className="flex flex-col items-center">
           {isLoading ? (
             <span>Loading avatar...</span>
@@ -43,9 +43,11 @@ const Comment = ({ comment }) => {
             {isLoading ? <span>Loading...</span> : <p>{name}</p>}
           </div>
         </div>
-        <div className="border-[1px] p-2 rounded-[15px]">
+        <div className="border-[1px] p-2 rounded-[15px] max-w-[80%] whitespace-normal flex flex-col items-center">
           <small>{time}</small>
-          <p>{comment.comment}</p>
+          <div className="flex flex-wrap break-all">
+            <p>{comment.comment}</p>
+          </div>
         </div>
       </div>
     </div>
