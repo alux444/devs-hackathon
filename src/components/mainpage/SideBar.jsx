@@ -3,6 +3,7 @@ import CreatePostModal from "../posts/CreatePostModal";
 import { PageContext, UserContext } from "../../App";
 import AddWorkoutModal from "../posts/AddWorkoutModal";
 import Login from "../loginpage/Login";
+import logo from "../../img/logo.svg";
 
 const SideBar = () => {
   const [openNewPost, setOpenNewPost] = useState(false);
@@ -30,7 +31,8 @@ const SideBar = () => {
 
   return (
     <div className="w-[20vw] border-2 h-[100%] flex flex-col gap-1">
-      SideBar
+      <img src={logo} />
+      {user.loggedIn && <small>Welcome to Zinstagram, {user.username}</small>}
       {user.loggedIn ? (
         <button onClick={() => signOut()}>Sign out</button>
       ) : (

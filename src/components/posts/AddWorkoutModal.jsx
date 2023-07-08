@@ -33,6 +33,7 @@ const AddWorkoutModal = ({ open, close }) => {
     }
 
     console.log(await addWorkout(user.email, exercises, name));
+    close();
   };
 
   const handleName = (e) => {

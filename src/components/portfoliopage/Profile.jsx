@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchPostUser } from "../../utils/fetchPostUser";
-import Post from "../posts/Post";
+import PostContainer from "../posts/PostContainer";
 
 const Profile = ({ email }) => {
   const [profileData, setProfileData] = useState([]);
@@ -15,9 +15,9 @@ const Profile = ({ email }) => {
     fetchProfilePosts();
   }, []);
 
-  const posts = profileData.map((post) => {
-    <Post post={post} key={post.id} />;
-  });
+  const posts = profileData.map((post) => (
+    <PostContainer post={post} key={post.id} />
+  ));
 
   return (
     <div>
