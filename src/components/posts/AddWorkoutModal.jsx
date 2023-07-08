@@ -61,22 +61,29 @@ const AddWorkoutModal = ({ open, close }) => {
 
   return (
     <Modal open={open}>
-      <div className="w-[100%] h-[100%] items-center align-center justify-center flex">
+      <div className="w-[100%] h-[100%] items-center align-center justify-center flex border-2">
         <div
           ref={modalRef}
-          className="border-2 border-solid border-white p-[25px] text-center items-center bg-[black] "
+          className="border-2 border-solid border-white p-[25px] text-center items-center bg-[black] max-h-[90%] overflow-auto"
         >
           {newExercise ? (
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 items-center">
               <ExerciseForm submit={addExercise} exit={closeForm} />
-              <button onClick={closeForm}>Cancel</button>
+              <button className="w-[20%]" onClick={closeForm}>
+                <small>Cancel</small>
+              </button>
             </div>
           ) : (
             <div>
               <h2 className="text-xl">New Workout</h2>
               <form className="flex flex-col gap-2" onSubmit={onSubmit}>
                 <label>Workout Name</label>
-                <input className="text-black" type="text" value={name} onChange={handleName} />
+                <input
+                  className="text-black"
+                  type="text"
+                  value={name}
+                  onChange={handleName}
+                />
                 {mapped}
                 <button type="button" onClick={() => setNewExercise(true)}>
                   Add exercise
