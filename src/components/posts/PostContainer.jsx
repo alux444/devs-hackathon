@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import InteractBar from "./InteractBar";
+import { fetchUserAvatar } from "../../utils/fetchUserAvatar";
 
 const PostContainer = ({ post }) => {
+  const [avatar, setAvatar] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAvatar = async () => {
+      try {
+        const fetchedAvatar = await fetchUserAvatar(post.user);
+        setAvatar(fetchedAvatar);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching avatar:", error);
+      }
+    };
+    fetchAvatar();
+    console.log(post.user);
+  }, []);
+
   const date = post.time ? new Date(post.time.seconds * 1000) : null;
   const time = post.time ? date.toLocaleString() : "Loading";
 
@@ -9,10 +27,18 @@ const PostContainer = ({ post }) => {
     <div className="items-center justify-center align-center gap-2 flex p-[10px] mt-[10px] mb-[10px] border-[1px] border-solid rounded-[20px] border-white max-w-[90%] lg:flex-col">
       <div className="flex flex-col">
         <div className="flex flex-col items-center">
-          <img
-            src="https://firebasestorage.googleapis.com/v0/b/devs-hackathon.appspot.com/o/images%2Fdefault_pfp.png?alt=media&token=0b96cfc4-fd7d-4a3b-a716-b49f46d302a5"
-            className="w-[10vw]"
-          />
+          {isLoading ? (
+            <span>Loading avatar...</span>
+          ) : (
+            <img
+              src={
+                avatar === ""
+                  ? "https://firebasestorage.googleapis.com/v0/b/devs-hackathon.appspot.com/o/images%2Fdefault_pfp.png?alt=media&token=0b96cfc4-fd7d-4a3b-a716-b49f46d302a5"
+                  : avatar
+              }
+              className="w-[10vw]"
+            />
+          )}
           <div className="flex flex-col gap-2">
             <p>{post.username}</p>
             <small>{time}</small>
