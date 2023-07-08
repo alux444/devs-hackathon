@@ -25,7 +25,9 @@ function App() {
     <>
       <UserContext.Provider value={{ user, setUser }}>
         <PageContext.Provider value={{ page, setPage }}>
-          <Home />
+          <div className="w-screen h-screen flex justify-center items-center align-center">
+            <Home />
+          </div>
         </PageContext.Provider>
       </UserContext.Provider>
     </>
