@@ -1,7 +1,7 @@
 import React from "react";
 import InteractBar from "./InteractBar";
 
-const Post = () => {
+const Post = ({ post }) => {
   return (
     <div>
       <div>
