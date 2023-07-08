@@ -1,18 +1,14 @@
 import { Modal } from "@mui/material";
 import React, { useContext, useRef, useState } from "react";
 import useOutsideClick from "../../utils/useOutsideClose";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { UserContext } from "../../App";
-import { v4 as uuidv4 } from "uuid";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "../../../fbConfig";
 import ExerciseForm from "./ExerciseForm";
+import addWorkout from "../../utils/addWorkout";
 
 const AddWorkoutModal = ({ open, close }) => {
   const { user } = useContext(UserContext);
   const [exercises, setExercises] = useState([]);
   const [newExercise, setNewExercise] = useState(false);
-  const postRef = collection(db, "workouts");
   const modalRef = useRef(null);
 
   useOutsideClick(modalRef, close);
@@ -22,36 +18,17 @@ const AddWorkoutModal = ({ open, close }) => {
     setExercises(tempExercises);
   };
 
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const postId = uuidv4();
-
-  //   const captionData = caption;
-
-  //   const createNewPost = async () => {
-  //     await addDoc(postRef, {
-  //       time: serverTimestamp(),
-  //       user: user.email,
-  //       caption: captionData,
-  //       id: postId,
-  //     });
-  //   };
-
-  //   createNewPost();
-  //   close();
-  // };
-
   const closeForm = () => {
     setNewExercise(false);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(exercises);
+    console.log(await addWorkout(user.email, exercises));
   };
 
   const mapped = exercises.map((exercise, index) => (
-    <div key={index}>
+    <div key={exercise.name}>
       <p>{exercise.name}</p>
       {exercise.sets.map((set) => (
         <div
