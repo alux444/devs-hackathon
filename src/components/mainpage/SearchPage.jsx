@@ -37,7 +37,7 @@ const SearchPage = () => {
         placeholder="Search for a user.."
         value={username}
       />
-      <div className="flex flex-col items-center border-[1px] p-3 rounded-lg overflow-auto max-h-[50vh] max-w-[90%]">
+      <div className="flex flex-col items-center border-[1px] p-3 rounded-lg overflow-auto max-h-[50vh] max-w-[90%] fade-in">
         {filteredUsers.length == 0 ? <p>No users found.</p> : display}
       </div>
     </div>

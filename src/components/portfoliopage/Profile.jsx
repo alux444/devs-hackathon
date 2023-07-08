@@ -47,7 +47,7 @@ const Profile = ({ email, small }) => {
         <h2 className="mini">{userInfo.username}</h2>
         <p>{userInfo.bio}</p>
       </div>
-      <div className="border-[1px] p-2 overflow-auto flex flex-col items-center max-h-[60vh] max-w-[90%]">
+      <div className="border-[1px] rounded-xl p-2 overflow-auto flex flex-col items-center max-h-[60vh] max-w-[90%]">
         {profileData.length == 0 ? (
           <div className="p-2">
             <p>No posts yet :(</p>

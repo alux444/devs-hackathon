@@ -26,7 +26,7 @@ const Login = ({ open, close }) => {
       <div className="w-[100%] h-[100%] items-center align-center justify-center flex">
         <div
           ref={modalRef}
-          className="border-2 border-solid border-white p-[25px] text-center items-center bg-[black]"
+          className="border-[1px] rounded-[15px] border-solid border-white p-[25px] text-center items-center bg-[black]"
         >
           {" "}
           {login ? (
