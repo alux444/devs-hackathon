@@ -22,7 +22,9 @@ const InteractBar = ({ post }) => {
       <button onClick={() => setOpenComments(true)}>
         <CommentIcon />
       </button>
-      <CommentsModal post={post} open={openComments} close={closeComments} />
+      {openComments && (
+        <CommentsModal post={post} open={openComments} close={closeComments} />
+      )}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { UserContext } from "../../App";
 import PostContainer from "./PostContainer";
 import { getComments } from "../../utils/getComments";
 import addNewComment from "../../utils/addNewComment";
+import Comment from "./Comment";
 
 const CommentsModal = ({ post, open, close }) => {
   const [comment, setComment] = useState("");
@@ -31,19 +32,13 @@ const CommentsModal = ({ post, open, close }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     await addNewComment(comment, user, post.id);
+    setComment("");
+    fetchComments();
   };
 
-  const mappedComments = data.map((comment) => {
-    const date = comment.time ? new Date(comment.time.seconds * 1000) : null;
-    const time = comment.time ? date.toLocaleString() : "Loading";
-
-    return (
-      <div key={comment.commentid}>
-        <p>{comment.user}</p>
-        <small>{time}</small>
-      </div>
-    );
-  });
+  const mappedComments = data.map((comment) => (
+    <Comment comment={comment} key={comment.id} />
+  ));
 
   return (
     <Modal open={open}>
@@ -53,7 +48,7 @@ const CommentsModal = ({ post, open, close }) => {
           className="border-2 border-solid flex flex-col border-white p-[25px] text-center items-center align-center bg-[black]"
         >
           <PostContainer post={post} />
-          {data.length == 0 ? <p>No comments yet.</p> : { mappedComments }}
+          {data.length == 0 ? <p>No comments yet.</p> : mappedComments}
           <div className="max-h-[50vh]">
             {user.loggedIn ? (
               <div className="w-full">
