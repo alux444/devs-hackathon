@@ -2,8 +2,15 @@ import React, { useEffect, useState } from "react";
 import InteractBar from "./InteractBar";
 import { fetchUserData } from "../../utils/fetchUserData";
 import noPfp from "../../img/default_pfp.png";
+import horizontal from "../../img/horizontal.svg";
 
 const PostContainer = ({ post }) => {
+  const backgroundImage = {
+    backgroundImage: `url(${horizontal})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
+
   const [avatar, setAvatar] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,8 +31,11 @@ const PostContainer = ({ post }) => {
   const time = post.time ? date.toLocaleString() : "Loading";
 
   return (
-    <div className="items-center justify-center align-center gap-2 flex p-[10px] mt-[10px] mb-[10px] border-[1px] border-solid rounded-[20px] border-white max-w-[90%] lg:flex-col">
-      <div className="flex flex-col">
+    <div
+      className="items-center justify-center align-center gap-2 flex p-[10px] mt-[10px] mb-[10px] border-[1px] border-solid rounded-[20px] border-white w-[90%] lg:flex-col fade-in"
+      style={backgroundImage}
+    >
+      <div className="flex flex-col items-center">
         <div className="flex flex-col items-center">
           {isLoading ? (
             <span>Loading avatar...</span>
@@ -38,7 +48,9 @@ const PostContainer = ({ post }) => {
           </div>
         </div>
         <br />
-        <img className="max-w-[70vw] max-h-[500px]" src={post.image} />
+        {post.image !== "" && (
+          <img className="max-w-[50%] max-h-[50%] border-2" src={post.image} />
+        )}
         <br />
       </div>
       <div className="max-w-[60%] lg:max-w-[100%] flex flex-col gap-2 max-h-[50vh] overflow-auto">

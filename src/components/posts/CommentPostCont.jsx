@@ -20,8 +20,8 @@ const CommentPostCont = ({ post }) => {
   }, []);
 
   return (
-    <div className="items-center justify-center align-center gap-2 flex p-[10px] mt-[10px] mb-[10px] border-[1px] border-solid rounded-[20px] border-white max-w-[90%] lg:flex-col text-sm">
-      <div className="flex flex-col">
+    <div className="items-center justify-center align-center gap-2 flex p-[10px] mt-[10px] mb-[10px] border-[1px] border-solid rounded-[20px] border-white w-[90%] lg:flex-col text-sm">
+      <div className="flex flex-col items-center">
         <div className="flex flex-col items-center">
           {isLoading ? (
             <span>Loading avatar...</span>
@@ -33,7 +33,7 @@ const CommentPostCont = ({ post }) => {
           </div>
         </div>
         <br />
-        <img className="max-w-[70vw] max-h-[500px]" src={post.image} />
+        <img className="max-w-[60%] max-h-[50%]" src={post.image} />
         <br />
       </div>
       <div className="max-w-[60%] lg:max-w-[100%] flex flex-col gap-2 max-h-[50vh] overflow-auto">

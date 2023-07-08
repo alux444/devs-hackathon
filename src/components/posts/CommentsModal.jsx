@@ -62,7 +62,7 @@ const CommentsModal = ({ post, open, close }) => {
             {user.loggedIn ? (
               <form className="w-full flex gap-5 mt-5" onSubmit={onSubmit}>
                 <input
-                  className="w-[40vw] lg:w-[60vw]"
+                  className="w-[40vw] lg:w-[50vw]"
                   type="text"
                   value={comment}
                   onChange={handleComment}

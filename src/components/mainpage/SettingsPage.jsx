@@ -52,8 +52,9 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className="h-full flex flex-col gap-3 items-center justify-center w-[75vw] lg:w-[90vw] border-[1px] p-3">
-      <div className="flex align-center">
+    <div className="h-full flex flex-col gap-3 items-center justify-center w-[75vw] lg:w-[90vw] border-[1px] p-3 lg:h-[82vh]">
+      <h2 className="title">Settings</h2>
+      <div className="flex align-center fade-in">
         <label htmlFor="image-upload" className="relative">
           <div className="file-input-mask">
             <div className="flex align-center items-center justify-center text-center">
@@ -85,26 +86,28 @@ const SettingsPage = () => {
           </div>
         </label>
       </div>
-      <div>
-        <small>Email</small>
-        <h2>{user.email}</h2>
-      </div>
-      <div>
-        <small>Username</small>
-        <h2>{user.username}</h2>
-      </div>
-      {data && (
-        <div className="flex flex-col">
-          <label>Bio</label>
-          <textarea
-            className="border-[1px] w-[27vw] lg:w-[40vw] md:w-[65vw]"
-            value={bio}
-            onChange={onChangeBio}
-          />
+      <div className="fade-in">
+        <div>
+          <small>Email</small>
+          <h2>{user.email}</h2>
         </div>
-      )}
-      <button onClick={onSubmit}>Submit</button>
-      <small>{message}</small>
+        <div>
+          <small>Username</small>
+          <h2>{user.username}</h2>
+        </div>
+        {data && (
+          <div className="flex flex-col">
+            <label>Bio</label>
+            <textarea
+              className="border-[1px] w-[27vw] lg:w-[40vw] md:w-[65vw]"
+              value={bio}
+              onChange={onChangeBio}
+            />
+          </div>
+        )}
+        <button onClick={onSubmit}>Submit</button>
+        <small>{message}</small>
+      </div>
     </div>
   );
 };

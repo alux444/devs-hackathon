@@ -4,7 +4,7 @@ import PostContainer from "../posts/PostContainer";
 import { fetchUserData } from "../../utils/fetchUserData";
 import noPfp from "../../img/default_pfp.png";
 
-const Profile = ({ email }) => {
+const Profile = ({ email, small }) => {
   const [userInfo, setUserInfo] = useState({
     username: "",
     bio: "",
@@ -34,18 +34,22 @@ const Profile = ({ email }) => {
   ));
 
   return (
-    <div className="h-full flex flex-col items-center justify-between w-[75vw] lg:w-[90vw] border-[1px]">
+    <div
+      className={`h-full flex flex-col items-center justify-center w-[75vw] lg:w-[90vw] border-[1px] ${
+        small && "w-fit max-w-[75vw] lg:max-w-[90vw] max-h-[80vh]"
+      }`}
+    >
       <div className="flex items-center flex-col p-2">
         <img
           src={userInfo.avatar == "" ? noPfp : userInfo.avatar}
           className="h-[20vh]"
         />
-        <h2>{userInfo.username}</h2>
+        <h2 className="mini">{userInfo.username}</h2>
         <p>{userInfo.bio}</p>
       </div>
-      <div className="border-[1px] p-2 overflow-auto flex flex-col items-center max-h-[60vh] max-w-[90%]">
+      <div className="border-[1px] rounded-xl p-2 overflow-auto flex flex-col items-center max-h-[60vh] max-w-[90%]">
         {profileData.length == 0 ? (
-          <div>
+          <div className="p-2">
             <p>No posts yet :(</p>
           </div>
         ) : (

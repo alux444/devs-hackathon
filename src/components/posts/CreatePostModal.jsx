@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from "uuid";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../fbConfig";
 import { fetchAllWorkouts } from "../../utils/fetchAllWorkouts";
+import DeleteIcon from "@mui/icons-material/Delete";
+import deleteWorkout from "../../utils/deleteWorkout";
 
 const CreatePostModal = ({ open, close }) => {
   const { user } = useContext(UserContext);
@@ -87,10 +89,23 @@ const CreatePostModal = ({ open, close }) => {
     close();
   };
 
+  const deleteSelected = async (id) => {
+    await deleteWorkout(id);
+    await fetchAll();
+    setSelectedWorkout(null);
+  };
+
   const mappedWorkouts = workouts.map((workout) => (
-    <div key={workout.id}>
+    <div key={workout.id} className="flex gap-2 justify-center">
       <button type="button" onClick={() => setSelectedWorkout(workout)}>
         {workout.name}
+      </button>
+      <button
+        className=" hover:border-red-400"
+        type="button"
+        onClick={() => deleteSelected(workout.id)}
+      >
+        <DeleteIcon />
       </button>
     </div>
   ));
@@ -100,9 +115,9 @@ const CreatePostModal = ({ open, close }) => {
       <div className="w-[100%] h-[100%] items-center align-center justify-center flex">
         <div
           ref={modalRef}
-          className="border-2 border-solid border-white p-[25px] text-center items-center bg-[black]"
+          className="border-2 border-solid border-white p-[25px] text-center items-center bg-[black] flex flex-col gap-2"
         >
-          <form onSubmit={onSubmit}>
+          <form className="flex flex-col gap-2" onSubmit={onSubmit}>
             <label className="block mb-2">Select Image (optional)</label>
             <div className="flex items-center justify-center mb-2">
               <input
@@ -121,7 +136,7 @@ const CreatePostModal = ({ open, close }) => {
             <textarea
               value={caption}
               onChange={onChangeCaption}
-              className="text-black border-[1px] border-solid border-white w-[100%] p-[10px]"
+              className="border-[1px] border-solid border-white w-[100%] p-[10px]"
             />
 
             <small>
@@ -147,6 +162,7 @@ const CreatePostModal = ({ open, close }) => {
             </div>
             {uploading && <small>Uploading your post...</small>}
             <button type="submit">Post!</button>
+            <br />
             <small>{message}</small>
           </form>
         </div>

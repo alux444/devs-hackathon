@@ -4,10 +4,7 @@ import noPfp from "../../img/default_pfp.png";
 
 const UserSearchDisplay = ({ user }) => {
   const [showProfile, setShowProfile] = useState(false);
-
-  const visitProfile = () => {
-    setShowProfile(!showProfile);
-  };
+  const small = true;
 
   return (
     <div className="mt-2 flex gap-2 items-center">
@@ -20,7 +17,7 @@ const UserSearchDisplay = ({ user }) => {
       {showProfile && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="absolute bg-black rounded-lg p-4">
-            <Profile email={user.email} />
+            <Profile email={user.email} small={small} />
             <button className="mt-3" onClick={() => setShowProfile(false)}>
               Close
             </button>
