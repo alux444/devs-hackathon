@@ -25,7 +25,7 @@ const SearchPage = () => {
   })
   const display = filterExercises.map((guy)=>{
     return(
-      <div key={guy.username}>
+      <div className="mt-2" key={guy.username}>
         {guy.username}
       </div>
     )
@@ -39,7 +39,7 @@ const SearchPage = () => {
         placeholder="Search for a user.."
         value={username}
       />
-      <h3 className="font-bold text-xl mb-4">Users</h3>
+      <h3 className="font-bold text-xl mt-4">Users</h3>
       <div className="flex flex-col items-center">{display}</div>
     </div>
   );
