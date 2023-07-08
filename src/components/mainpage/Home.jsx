@@ -1,7 +1,14 @@
 import React from "react";
+import SideBar from "./SideBar";
+import HomePage from "./HomePage";
 
 const Home = () => {
-  return <div className="w-screen h-[90vh] border-2">Home</div>;
+  return (
+    <div className="w-screen h-[90vh] border-2 flex">
+      <SideBar />
+      <HomePage />
+    </div>
+  );
 };
 
 export default Home;
