@@ -62,13 +62,13 @@ const ExerciseForm = ({ submit, exit }) => {
   return (
     <div className="flex gap-2 flex-col">
       <label>Exercise Name</label>
-      <input type="text" value={name} onChange={handleName} />
+      <input className="text-black" type="text" value={name} onChange={handleName} />
       {mappedSets}
       <div>
         <label>Weight</label>
-        <input type="number" onChange={handleWeightChange} />
+        <input className="text-black" type="number" onChange={handleWeightChange} />
         <label>Reps</label>
-        <input type="number" onChange={handleRepsChange} />
+        <input className="text-black" type="number" onChange={handleRepsChange} />
         <label>Units</label>
         <select onChange={handleUnitChange}>
           <option value="kg">kg</option>

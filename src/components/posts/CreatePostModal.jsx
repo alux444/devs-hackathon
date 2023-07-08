@@ -121,7 +121,7 @@ const CreatePostModal = ({ open, close }) => {
             <textarea
               value={caption}
               onChange={onChangeCaption}
-              className="border-[1px] border-solid border-white w-[100%] p-[10px]"
+              className="text-black border-[1px] border-solid border-white w-[100%] p-[10px]"
             />
 
             <small>
