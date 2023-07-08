@@ -20,9 +20,15 @@ const Profile = ({ email }) => {
   ));
 
   return (
-    <div>
-      <h2>{email}'s Profile</h2>
-      {posts}
+    <div className="h-full flex flex-col justify-between border-2">
+      <div>
+        <p>pfp</p>
+        <h2>{email}</h2>
+        <p>bio</p>
+      </div>
+      <div className="border-2 overflow-auto flex flex-col items-center h-[60vh]">
+        {posts}
+      </div>
     </div>
   );
 };
