@@ -49,7 +49,7 @@ const Profile = ({ email, small }) => {
       </div>
       <div className="border-[1px] p-2 overflow-auto flex flex-col items-center max-h-[60vh] max-w-[90%]">
         {profileData.length == 0 ? (
-          <div>
+          <div className="p-2">
             <p>No posts yet :(</p>
           </div>
         ) : (
