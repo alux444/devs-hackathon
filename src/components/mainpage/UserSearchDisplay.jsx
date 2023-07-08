@@ -9,7 +9,7 @@ const UserSearchDisplay = ({ user }) => {
   };
 
   return (
-    <div className="mt-2 flex gap-2 items-center relative">
+    <div className="mt-2 flex gap-2 items-center">
       <img
         src={
           user.avatar == ""
@@ -21,8 +21,11 @@ const UserSearchDisplay = ({ user }) => {
       {user.username}
       <button onClick={() => setShowProfile(true)}>Visit Profile</button>
       {showProfile && (
-        <div className="absolute">
-          <Profile user={user.email} />
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="absolute bg-black rounded-lg p-4">
+            <Profile email={user.email} />
+            <button onClick={() => setShowProfile(false)}>Close</button>
+          </div>
         </div>
       )}
     </div>
