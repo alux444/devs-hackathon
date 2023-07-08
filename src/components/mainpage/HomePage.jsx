@@ -10,10 +10,6 @@ const HomePage = () => {
     setData(results);
   };
 
-  const test = () => {
-    console.log(data);
-  };
-
   useEffect(() => {
     getPosts();
   }, []);
@@ -23,10 +19,9 @@ const HomePage = () => {
   });
 
   return (
-    <div>
-      HomePage
-      <button onClick={test}>aa</button>
-      {mappedPosts}
+    <div className="overflow-auto flex border-2 flex-col">
+      <p>Home</p>
+      <div className="flex flex-col items-center">{mappedPosts}</div>
     </div>
   );
 };
