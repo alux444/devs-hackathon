@@ -51,7 +51,7 @@ const PostContainer = ({ post }) => {
         <div>
           <p>"{post.caption}"</p>
         </div>
-        <div className="rounded-lg border-2">
+        <div className="p-4 rounded-lg border-2">
           <h2>{post.workout.name}</h2>
           <div className="flex flex-wrap justify-center align-center items-center">
             {post.workout.exercises.map((exercise) => (

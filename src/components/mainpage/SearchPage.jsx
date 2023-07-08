@@ -32,7 +32,7 @@ const SearchPage = () => {
   })
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="ml-5 flex flex-col items-center justify-center">
       <input
         className="text-black w-[16vw] h-[6vh] border-2 rounded-full pl-5"
         onChange={handleUsernameChange}
