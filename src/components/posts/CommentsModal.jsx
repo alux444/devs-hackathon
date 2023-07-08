@@ -63,7 +63,7 @@ const CommentsModal = ({ post, open, close }) => {
               <div className="w-full">
                 <form onSubmit={onSubmit}>
                   <input
-                    className="text-black w-[40vw] lg:w-[60vw]"
+                    className="w-[40vw] lg:w-[60vw]"
                     type="text"
                     value={comment}
                     onChange={handleComment}
