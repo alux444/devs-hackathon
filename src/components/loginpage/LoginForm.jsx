@@ -32,20 +32,14 @@ const LoginForm = () => {
     <div className="border-2">
       <form onSubmit={onSubmit}>
         <div >
-          <h3>
-            Email
-          </h3>
-          <input type="email" onChange={handleEmailChange}/>
+          <input className="w-[16vw] h-[6vh] border-2 mb-2 mt-4" type="email" onChange={handleEmailChange} placeholder="Email"/>
         </div>
 
         <div >
-          <h3>
-            Password
-          </h3>
-          <input type="password" onChange={handlePasswordChange}/>
+          <input className = "w-[16vw] h-[6vh] border-2 mb-2" type="password" onChange={handlePasswordChange} placeholder="Password"/>
         </div>
-        <button type="submit" >
-          Login
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-24 rounded mb-2"type="submit" >
+          Log in
         </button>
         <h4>
           {message}
