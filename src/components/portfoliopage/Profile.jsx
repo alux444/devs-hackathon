@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { fetchPostUser } from "../../utils/fetchPostUser";
 import PostContainer from "../posts/PostContainer";
+import { fetchUserData } from "../../utils/fetchUserData";
 
 const Profile = ({ email }) => {
+  const [bio, setBio] = useState("");
   const [profileData, setProfileData] = useState([]);
 
   const fetchProfilePosts = async () => {
-    console.log(email);
     const data = await fetchPostUser(email);
     setProfileData(data);
   };
 
+  const fetchBio = async () => {
+    const data = await fetchUserData(email);
+    setBio(data.bio);
+  };
+
   useEffect(() => {
     fetchProfilePosts();
+    fetchBio();
   }, []);
 
   const posts = profileData.map((post) => (
@@ -27,7 +34,7 @@ const Profile = ({ email }) => {
           className="w-[10vw] rounded-[25px]"
         />
         <h2>{email}</h2>
-        <p>bio</p>
+        <p>{bio}</p>
       </div>
       <div className="border-2 overflow-auto flex flex-col items-center h-[60vh]">
         {posts}

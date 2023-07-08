@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Modal } from "@mui/material";
 import useOutsideClick from "../../utils/useOutsideClose";
 import { UserContext } from "../../App";
-import PostContainer from "./PostContainer";
 import { getComments } from "../../utils/getComments";
 import addNewComment from "../../utils/addNewComment";
 import Comment from "./Comment";
