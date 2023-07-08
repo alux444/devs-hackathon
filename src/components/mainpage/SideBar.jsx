@@ -30,7 +30,7 @@ const SideBar = () => {
   };
 
   return (
-    <div className="w-[20vw] overflow-auto lg:p-2 lg:w-[90vw] border-2 h-full lg:h-[40vh] flex gap-2 flex-col lg:flex-row">
+    <div className="w-[20vw] overflow-auto lg:p-2 lg:w-[90vw] border-2 h-full lg:h-[20vh] flex gap-2 flex-col lg:flex-row">
       <img src={logo} />
       {user.loggedIn && <small>Welcome to Zinstagram, {user.username}</small>}
       {user.loggedIn ? (

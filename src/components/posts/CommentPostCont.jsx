@@ -47,7 +47,7 @@ const CommentPostCont = ({ post }) => {
         <div>
           <p>"{post.caption}"</p>
         </div>
-        <div className="border-2">
+        <div className="border-[1px] p-2">
           <h2>{post.workout.name}</h2>
           <div className="flex flex-wrap justify-center align-center items-center">
             {post.workout.exercises.map((exercise) => (
