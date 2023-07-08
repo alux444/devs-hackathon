@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchUserData } from "../../utils/fetchUserData";
+import noPfp from "../../img/default_pfp.png";
 
 const Comment = ({ comment }) => {
   const [avatar, setAvatar] = useState("");
@@ -31,11 +32,7 @@ const Comment = ({ comment }) => {
             <span>Loading avatar...</span>
           ) : (
             <img
-              src={
-                avatar === ""
-                  ? "https://firebasestorage.googleapis.com/v0/b/devs-hackathon.appspot.com/o/images%2Fdefault_pfp.png?alt=media&token=0b96cfc4-fd7d-4a3b-a716-b49f46d302a5"
-                  : avatar
-              }
+              src={avatar === "" ? noPfp : avatar}
               className="w-[5vw] lg:[10vw]"
             />
           )}

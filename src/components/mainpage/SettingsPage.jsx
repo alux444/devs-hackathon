@@ -2,14 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../App";
 import { fetchUserData } from "../../utils/fetchUserData";
 import addImage from "../../utils/addImage";
-import { editUserAvatar } from "../../utils/editUserAvatar";
+import noPfp from "../../img/default_pfp.png";
+import { useEditUser } from "../../utils/useEditUser";
 
 const SettingsPage = () => {
   const { user } = useContext(UserContext);
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
   const [imageURL, setImageURL] = useState(null);
+  const [bio, setBio] = useState("");
   const [data, setData] = useState(null);
+
+  const { editUserAvatar, editUserBio } = useEditUser();
 
   const onChangeImage = (e) => {
     const image = e.target.files[0];
@@ -18,9 +22,16 @@ const SettingsPage = () => {
     setImageURL(imageURL);
   };
 
+  const onChangeBio = (e) => {
+    if (e.target.value.length < 50) {
+      setBio(e.target.value);
+    }
+  };
+
   const fetchData = async () => {
     const info = await fetchUserData(user.email);
     setData(info);
+    setBio(info.bio);
   };
 
   useEffect(() => {
@@ -33,12 +44,15 @@ const SettingsPage = () => {
     if (file) {
       const url = await addImage(file);
       await editUserAvatar(user.email, url);
-      setMessage("Success! Reload the page.");
     }
+    if (bio !== data.bio) {
+      await editUserBio(user.email, bio);
+    }
+    setMessage("Success! Reload the page.");
   };
 
   return (
-    <div className="h-full flex flex-col items-center justify-center w-[75vw] lg:w-[90vw] border-[1px] p-3">
+    <div className="h-full flex flex-col gap-3 items-center justify-center w-[75vw] lg:w-[90vw] border-[1px] p-3">
       <div className="flex align-center">
         <label htmlFor="image-upload" className="relative">
           <div className="file-input-mask">
@@ -59,7 +73,7 @@ const SettingsPage = () => {
                     src={
                       !imageURL
                         ? data.avatar === ""
-                          ? "https://firebasestorage.googleapis.com/v0/b/devs-hackathon.appspot.com/o/images%2Fdefault_pfp.png?alt=media&token=0b96cfc4-fd7d-4a3b-a716-b49f46d302a5"
+                          ? noPfp
                           : data.avatar
                         : imageURL
                     }
@@ -77,6 +91,11 @@ const SettingsPage = () => {
       <div>
         <h2>{user.username}</h2>
       </div>
+      {data && (
+        <div>
+          <input type="text" value={bio} onChange={onChangeBio} />
+        </div>
+      )}
       <button onClick={onSubmit}>Submit</button>
       <small>{message}</small>
     </div>

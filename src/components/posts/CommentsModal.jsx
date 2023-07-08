@@ -48,7 +48,7 @@ const CommentsModal = ({ post, open, close }) => {
       <div className="w-[100%] h-[100%] items-center align-center justify-center flex">
         <div
           ref={modalRef}
-          className="border-2 border-solid flex flex-col border-white p-[25px] text-center items-center align-center bg-[black]"
+          className="border-2 border-solid flex flex-col border-white p-[25px] text-center items-center align-center bg-[black] max-w-[90%] max-h-[90%] overflow-auto"
         >
           <CommentPostCont post={post} />
           {data.length == 0 ? (
@@ -60,17 +60,15 @@ const CommentsModal = ({ post, open, close }) => {
           )}
           <div className="max-h-[50vh]">
             {user.loggedIn ? (
-              <div className="w-full">
-                <form onSubmit={onSubmit}>
-                  <input
-                    className="w-[40vw] lg:w-[60vw]"
-                    type="text"
-                    value={comment}
-                    onChange={handleComment}
-                  ></input>
-                  <button type="submit">Comment</button>
-                </form>
-              </div>
+              <form className="w-full flex gap-5" onSubmit={onSubmit}>
+                <input
+                  className="w-[40vw] lg:w-[60vw]"
+                  type="text"
+                  value={comment}
+                  onChange={handleComment}
+                ></input>
+                <button type="submit">Comment</button>
+              </form>
             ) : (
               <small>Login to comment.</small>
             )}
