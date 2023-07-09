@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import fetchBooks from "../../utils/fetchBooks";
 import fetchVideo from "../../utils/fetchVideo";
+import fetchGyms from "../../utils/fetchGyms";
 
 const WorkoutsPage = () => {
   const [search, setSearch] = useState("chest exercises");
@@ -65,6 +66,12 @@ const WorkoutsPage = () => {
     setVideos(vids);
   };
 
+  const getGyms = async () => {
+    setChooseGym(true);
+    const gyms = await fetchGyms();
+    console.log(gyms);
+  };
+
   const chooseSpec = async (choice) => {
     if (exercise) {
       await getVideos(choice + "exercises");
@@ -121,7 +128,7 @@ const WorkoutsPage = () => {
             <button onClick={() => setWorkout(true)}>A Workout</button>
             <button onClick={() => setExercise(true)}>An Exercise</button>
             <button onClick={() => setChooseBooks(true)}>A Book</button>
-            <button onClick={() => setChooseGym(true)}>A Gym</button>
+            <button onClick={() => getGyms()}>A Gym</button>
           </div>
         </div>
       )}

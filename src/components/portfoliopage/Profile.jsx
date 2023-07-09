@@ -3,8 +3,14 @@ import { fetchPostUser } from "../../utils/fetchPostUser";
 import PostContainer from "../posts/PostContainer";
 import { fetchUserData } from "../../utils/fetchUserData";
 import noPfp from "../../img/default_pfp.png";
+import bg from "../../img/waves2.svg";
 
 const Profile = ({ email, small }) => {
+  const backgroundImage = {
+    backgroundImage: `url(${bg})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
   const [userInfo, setUserInfo] = useState({
     username: "",
     bio: "",
@@ -38,6 +44,7 @@ const Profile = ({ email, small }) => {
       className={`h-full flex flex-col items-center justify-center w-full border-[1px] ${
         small && "w-fit max-w-[75vw] lg:max-w-[90vw] max-h-[80vh]"
       }`}
+      style={backgroundImage}
     >
       <div className="flex items-center flex-col p-2">
         <img

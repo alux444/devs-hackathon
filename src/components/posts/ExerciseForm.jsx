@@ -13,6 +13,11 @@ const ExerciseForm = ({ submit, exit }) => {
   };
 
   const handleAddSet = () => {
+    setMessage("");
+    if (thisSet.weight <= 0 || thisSet.reps <= 0) {
+      setMessage("Reps/Weights must be positive.");
+      return;
+    }
     const newSets = [...sets, thisSet];
     setSets(newSets);
   };
@@ -46,6 +51,11 @@ const ExerciseForm = ({ submit, exit }) => {
 
     if (name == "") {
       setMessage("Exercise name required.");
+      return;
+    }
+
+    if (sets.length === 0) {
+      setMessage("At least one set is required.");
       return;
     }
 
