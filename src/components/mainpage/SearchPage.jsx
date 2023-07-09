@@ -29,7 +29,7 @@ const SearchPage = () => {
   });
 
   return (
-    <div className="text-white flex flex-col  gap-3 items-center justify-center w-[75vw] lg:w-[90vw] lg:h-[82vh] border-[1px]">
+    <div className="flex gap-3 w-full overflow-auto flex-col justify-center items-center p-3 h-full">
       <h2 className="title">User Search</h2>
       <input
         className="w-[50vw] h-[6vh] border-2 rounded-full pl-5 mt-2"
@@ -37,7 +37,7 @@ const SearchPage = () => {
         placeholder="Search for a user.."
         value={username}
       />
-      <div className="flex flex-col items-center border-[1px] p-3 rounded-lg overflow-auto max-h-[50vh] max-w-[90%] fade-in">
+      <div className="flex flex-col items-center border-[1px] p-5 rounded-lg overflow-auto max-h-[50vh] max-w-[90%] fade-in">
         {filteredUsers.length == 0 ? <p>No users found.</p> : display}
       </div>
     </div>

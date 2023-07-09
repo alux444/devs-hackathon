@@ -6,7 +6,7 @@ const ProfilePage = () => {
   const { user } = useContext(UserContext);
 
   return (
-    <div className="w-full max-h-full lg:h-[82vh]">
+    <div className="w-full h-full">
       <Profile email={user.email} />
     </div>
   );
