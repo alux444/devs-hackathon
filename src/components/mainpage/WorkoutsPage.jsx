@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import fetchBooks from "../../utils/fetchBooks";
+import fetchVideo from "../../utils/fetchVideo";
 
 const WorkoutsPage = () => {
   const [search, setSearch] = useState("chest exercises");
   const [books, setBooks] = useState([]);
+  const [videos, setVideos] = useState([]);
   const [exercise, setExercise] = useState(false);
   const [workout, setWorkout] = useState(false);
   const [chooseBooks, setChooseBooks] = useState(false);
@@ -60,7 +62,11 @@ const WorkoutsPage = () => {
     setBooks(books);
   };
 
-  const getVideos = async () => {};
+  const getVideos = async (choice) => {
+    const vids = await fetchVideo(choice);
+    console.log(vids);
+    setVideos(vids);
+  };
 
   const chooseSpec = async (choice) => {
     if (exercise || workout) {
@@ -81,6 +87,18 @@ const WorkoutsPage = () => {
       <p className="w-[20vw]">{book.title}</p>
       <a href={book.url} target="_blank" rel="noreferrer">
         <img src={book.thumbnail} className="h-[10vh]" />
+      </a>
+    </div>
+  ));
+
+  const mappedVids = videos.map((video) => (
+    <div
+      key={video.title}
+      className="border-[1px] p-2 w-[50%] flex flex-col items-center"
+    >
+      <p className="w-[20vw]">{video.title}</p>
+      <a href={video.url} target="_blank" rel="noreferrer">
+        <img src={video.thumbnail} className="h-[10vh]" />
       </a>
     </div>
   ));
@@ -165,6 +183,7 @@ const WorkoutsPage = () => {
           </p>
           <div className="flex w-[90%] border-[1px] overflow-auto h-[80%]">
             {chooseBooks && mappedBooks}
+            {workout || (exercise && mappedVids)}
           </div>
           <button onClick={returnSelect}>
             <small>Back</small>
