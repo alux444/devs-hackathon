@@ -22,6 +22,8 @@ concurrency:
   
 env:
   VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+  VITE_GOOG_KEYJ: ${{ secrets.VITE_GOOG_KEYJ }}
+  VITE_GOOG_KEYF: ${{ secrets.VITE_GOOG_KEYF }}
 
 jobs:
   # Single deploy job since we're just deploying
