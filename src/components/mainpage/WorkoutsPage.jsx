@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import fetchBooks from "../../utils/fetchBooks";
 
 const WorkoutsPage = () => {
   const [search, setSearch] = useState("chest exercises");
-  const [data, setData] = useState([]);
+  const [books, setBooks] = useState([]);
   const [exercise, setExercise] = useState(false);
   const [workout, setWorkout] = useState(false);
+  const [chooseBooks, setChooseBooks] = useState(false);
   const [chosen, setChosen] = useState(null);
 
   const bodyParts = [
@@ -31,11 +33,18 @@ const WorkoutsPage = () => {
     "Chest",
     "Cardio",
   ];
+  const bookChoices = [
+    "Bodybuilding",
+    "Fitness",
+    "Sports Science",
+    "Weight Loss",
+  ];
 
   const reset = () => {
     setChosen(null);
     setExercise(false);
     setWorkout(false);
+    setChooseBooks(false);
   };
 
   const returnSelect = () => {
@@ -45,25 +54,47 @@ const WorkoutsPage = () => {
   const selectChoice = async (choice) => {
     setChosen(choice);
   };
-  // const getBooks = async () => {
-  //   const books = await fetchBooks(search);
-  //   console.log(books);
-  //   setData(books);
-  // };
 
-  // useEffect(() => {
-  //   getBooks();
-  // }, []);
+  const getBooks = async (choice) => {
+    const books = await fetchBooks(choice);
+    setBooks(books);
+  };
+
+  const getVideos = async () => {};
+
+  const chooseSpec = async (choice) => {
+    if (exercise || workout) {
+      await getVideos(choice);
+      setChosen(choice);
+      return;
+    } else if (chooseBooks) {
+      await getBooks(choice);
+      setChosen(choice);
+    }
+  };
+
+  const mappedBooks = books.map((book) => (
+    <div
+      key={book.title}
+      className="border-[1px] p-2 w-[50%] flex flex-col items-center"
+    >
+      <p className="w-[20vw]">{book.title}</p>
+      <a href={book.url} target="_blank" rel="noreferrer">
+        <img src={book.thumbnail} className="h-[10vh]" />
+      </a>
+    </div>
+  ));
 
   return (
     <div className="h-full flex flex-col gap-3 items-center justify-center w-full border-[1px]">
       <h2 className="title">Exercise Finder</h2>
-      {!workout && !exercise && (
+      {!workout && !exercise && !chooseBooks && (
         <div className="item fade-in">
           <p>Im looking for...</p>
           <div className="flex gap-3">
             <button onClick={() => setWorkout(true)}>A Workout</button>
             <button onClick={() => setExercise(true)}>An Exercise</button>
+            <button onClick={() => setChooseBooks(true)}>A Book</button>
           </div>
         </div>
       )}
@@ -73,7 +104,7 @@ const WorkoutsPage = () => {
           <div className="flex flex-wrap justify-center w-[50%] gap-2">
             {bodyParts.map((bodypart) => (
               <button
-                onClick={() => selectChoice(bodypart)}
+                onClick={() => chooseSpec(bodypart)}
                 key={bodypart}
                 className="fade-in"
               >
@@ -92,7 +123,26 @@ const WorkoutsPage = () => {
           <div className="flex flex-wrap justify-center w-[50%] gap-2">
             {workoutChoices.map((choice) => (
               <button
-                onClick={() => selectChoice(choice)}
+                onClick={() => chooseSpec(choice)}
+                key={choice}
+                className="fade-in"
+              >
+                {choice}
+              </button>
+            ))}
+          </div>
+          <button onClick={reset}>
+            <small>Back</small>
+          </button>
+        </div>
+      )}
+      {chooseBooks && !chosen && (
+        <div className="flex justify-center flex-col items-center gap-4 fade-in">
+          <small>Select Book Theme</small>
+          <div className="flex flex-wrap justify-center w-[50%] gap-2">
+            {bookChoices.map((choice) => (
+              <button
+                onClick={() => chooseSpec(choice)}
                 key={choice}
                 className="fade-in"
               >
@@ -106,13 +156,16 @@ const WorkoutsPage = () => {
         </div>
       )}
       {chosen && (
-        <div className="flex flex-col gap-4 fade-in">
+        <div className="flex flex-col gap-4 fade-in w-full justify-center items-center">
           <small>Your search:</small>
           <p>
-            {chosen} {exercise ? "Exercises" : "Workouts"}
+            {chosen} {exercise && "Exercises"}
+            {workout && "Workouts"}
+            {chooseBooks && "Books"}
           </p>
-          <p>Suggested Videos</p>
-          <p>Suggested Books</p>
+          <div className="flex w-[90%] border-[1px] overflow-auto h-[80%]">
+            {chooseBooks && mappedBooks}
+          </div>
           <button onClick={returnSelect}>
             <small>Back</small>
           </button>
