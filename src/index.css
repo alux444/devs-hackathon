@@ -113,6 +113,8 @@ button:focus-visible {
   opacity: 1;
 }
 
-input {
+input,
+select,
+option {
   background-color: #333;
 }

@@ -64,7 +64,7 @@ const AddWorkoutModal = ({ open, close }) => {
       <div className="w-[100%] h-[100%] items-center align-center justify-center flex">
         <div
           ref={modalRef}
-          className="border-2 border-solid border-white p-[25px] text-center items-center bg-[black] max-h-[90%] overflow-auto"
+          className="border-[1px] rounded-lg p-[25px] text-center items-center bg-[rgba(0,0,0,0.9)] max-h-[90%] overflow-auto"
         >
           {newExercise ? (
             <div className="flex flex-col gap-2 items-center">

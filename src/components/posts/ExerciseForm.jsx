@@ -13,6 +13,11 @@ const ExerciseForm = ({ submit, exit }) => {
   };
 
   const handleAddSet = () => {
+    setMessage("");
+    if (thisSet.weight <= 0 || thisSet.reps <= 0) {
+      setMessage("Reps/Weights must be positive.");
+      return;
+    }
     const newSets = [...sets, thisSet];
     setSets(newSets);
   };
@@ -49,6 +54,11 @@ const ExerciseForm = ({ submit, exit }) => {
       return;
     }
 
+    if (sets.length === 0) {
+      setMessage("At least one set is required.");
+      return;
+    }
+
     const exercise = { name: name, sets: sets };
     submit(exercise);
     exit();
@@ -72,7 +82,7 @@ const ExerciseForm = ({ submit, exit }) => {
       <label>Exercise Name</label>
       <input type="text" value={name} onChange={handleName} />
       {mappedSets}
-      <div className="flex flex-wrap gap-2 w-full border-[2] justify-center">
+      <div className="flex flex-wrap gap-2 w-full justify-center">
         <div className="flex flex-col gap-2 w-[33%]">
           <label>Weight</label>
           <input type="number" onChange={handleWeightChange} />

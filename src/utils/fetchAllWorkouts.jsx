@@ -13,6 +13,5 @@ export const fetchAllWorkouts = async (email) => {
     data.push(item.data());
   });
 
-  console.log(data);
   return data;
 };

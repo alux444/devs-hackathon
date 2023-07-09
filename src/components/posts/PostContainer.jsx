@@ -32,11 +32,11 @@ const PostContainer = ({ post }) => {
 
   return (
     <div
-      className="items-center justify-center align-center gap-2 flex p-[10px] mt-[10px] mb-[10px] border-[1px] border-solid rounded-[20px] border-white w-[90%] lg:flex-col fade-in"
+      className="items-center justify-center align-center gap-3 flex p-2 mt-[10px]  border-[1px] border-solid rounded-[20px] max-h-fit w-[90%] lg:flex-col fade-in"
       style={backgroundImage}
     >
-      <div className="flex flex-col items-center">
-        <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center justify-center w-fit">
+        <div className="flex flex-col items-center ">
           {isLoading ? (
             <span>Loading avatar...</span>
           ) : (
@@ -47,17 +47,18 @@ const PostContainer = ({ post }) => {
             <small>{time}</small>
           </div>
         </div>
-        <br />
-        {post.image !== "" && (
-          <img className="max-w-[50%] max-h-[50%] border-2" src={post.image} />
-        )}
-        <br />
       </div>
-      <div className="max-w-[60%] lg:max-w-[100%] flex flex-col gap-2 max-h-[50vh] overflow-auto">
+      {post.image !== "" && (
+        <img
+          className="max-w-[40vw] max-h-[40vh] rounded-xl border-[1px]"
+          src={post.image}
+        />
+      )}
+      <div className="max-w-[60%] lg:max-w-[100%] flex flex-col gap-2 max-h-[50vh] overflow-auto border-[1px] rounded-xl">
         <div>
-          <p>"{post.caption}"</p>
+          <p>{post.caption}</p>
         </div>
-        <div className="rounded-lg border-[1px] p-2">
+        <div className="rounded-lg p-2">
           <h2>{post.workout.name}</h2>
           <div className="flex flex-wrap justify-center align-center items-center">
             {post.workout.exercises.map((exercise) => (
@@ -76,6 +77,7 @@ const PostContainer = ({ post }) => {
           </div>
         </div>
       </div>
+
       <InteractBar post={post} />
     </div>
   );

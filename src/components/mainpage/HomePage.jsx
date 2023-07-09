@@ -21,7 +21,7 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col w-full p-2 h-full">
-      <p className="title">Zinstagram</p>
+      <p className="title">GAINZTAGRAM</p>
       <small>Latest Posts</small>
       <div className="flex flex-col items-center w-full max-h-[85%] overflow-auto border-[1px]">
         {mappedPosts}
