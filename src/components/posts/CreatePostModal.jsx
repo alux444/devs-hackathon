@@ -99,7 +99,7 @@ const CreatePostModal = ({ open, close }) => {
   };
 
   const mappedWorkouts = workouts.map((workout) => (
-    <div key={workout.id} className="flex gap-2 justify-center">
+    <div key={workout.id} className="flex flex-wrap gap-2 justify-center">
       <button type="button" onClick={() => setSelectedWorkout(workout)}>
         {workout.name}
       </button>
