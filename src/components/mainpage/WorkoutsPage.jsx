@@ -69,10 +69,13 @@ const WorkoutsPage = () => {
   };
 
   const chooseSpec = async (choice) => {
-    if (exercise || workout) {
-      await getVideos(choice);
+    if (exercise) {
+      await getVideos(choice + "exercises");
       setChosen(choice);
       return;
+    } else if (workout) {
+      await getVideos(choice + "workouts");
+      setChosen(choice);
     } else if (chooseBooks) {
       await getBooks(choice);
       setChosen(choice);
