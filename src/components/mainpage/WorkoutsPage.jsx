@@ -53,10 +53,6 @@ const WorkoutsPage = () => {
     setChosen(null);
   };
 
-  const selectChoice = async (choice) => {
-    setChosen(choice);
-  };
-
   const getBooks = async (choice) => {
     const books = await fetchBooks(choice);
     setBooks(books);
@@ -64,7 +60,6 @@ const WorkoutsPage = () => {
 
   const getVideos = async (choice) => {
     const vids = await fetchVideo(choice);
-    console.log(vids);
     setVideos(vids);
   };
 
@@ -82,29 +77,35 @@ const WorkoutsPage = () => {
     }
   };
 
-  const mappedBooks = books.map((book) => (
-    <div
-      key={book.title}
-      className="border-[1px] p-2 w-[50%] flex flex-col items-center"
-    >
-      <p className="w-[20vw]">{book.title}</p>
-      <a href={book.url} target="_blank" rel="noreferrer">
-        <img src={book.thumbnail} className="h-[10vh]" />
-      </a>
-    </div>
-  ));
+  const mappedBooks = books.map((book) => {
+    const fixedTitle = book.title.replace(/(&amp;|&#39;)/g, "");
+    return (
+      <div
+        key={fixedTitle}
+        className="border-[1px] p-2 w-[50%] flex flex-col items-center"
+      >
+        <p className="w-[20vw]">{fixedTitle}</p>
+        <a href={book.url} target="_blank" rel="noreferrer">
+          <img src={book.thumbnail} className="h-[10vh]" />
+        </a>
+      </div>
+    );
+  });
 
-  const mappedVids = videos.map((video) => (
-    <div
-      key={video.title}
-      className="border-[1px] p-2 w-[50%] flex flex-col items-center"
-    >
-      <p className="w-[20vw]">{video.title}</p>
-      <a href={video.url} target="_blank" rel="noreferrer">
-        <img src={video.thumbnail} className="h-[10vh]" />
-      </a>
-    </div>
-  ));
+  const mappedVids = videos.map((video) => {
+    const fixedTitle = video.title.replace(/(&amp;|&#39;)/g, "");
+    return (
+      <div
+        key={fixedTitle}
+        className="border-[1px] p-2 w-[50%] flex flex-col items-center"
+      >
+        <p className="w-[20vw]">{fixedTitle}</p>
+        <a href={video.url} target="_blank" rel="noreferrer">
+          <img src={video.thumbnail} className="h-[10vh]" />
+        </a>
+      </div>
+    );
+  });
 
   return (
     <div className="h-full flex flex-col gap-3 items-center justify-center w-full border-[1px]">
