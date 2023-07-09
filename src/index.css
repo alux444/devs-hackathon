@@ -112,3 +112,7 @@ button:focus-visible {
 .overlay:hover {
   opacity: 1;
 }
+
+input {
+  background-color: #333;
+}
