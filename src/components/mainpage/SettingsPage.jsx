@@ -86,7 +86,7 @@ const SettingsPage = () => {
           </div>
         </label>
       </div>
-      <div className="fade-in">
+      <div className="fade-in flex flex-col">
         <div>
           <small>Email</small>
           <h2>{user.email}</h2>
