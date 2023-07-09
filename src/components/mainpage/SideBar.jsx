@@ -90,7 +90,7 @@ const SideBar = () => {
       </div>
 
       {showMenu && (
-        <div className="lg:flex justify-center items-center absolute w-[88vw] animate-fade-in">
+        <div className="hidden lg:flex justify-center items-center absolute w-[88vw] animate-fade-in">
           <div
             className="flex gap-1 items-center border-[1px] justify-center border-[1px] p-2 bg-[rgba(0,0,0,0.9)] rounded-[20px]"
             ref={menuRef}
