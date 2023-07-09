@@ -10,18 +10,23 @@ const InteractBar = ({ post }) => {
   const { user } = useContext(UserContext);
   const [currentLikes, setCurrentLikes] = useState(post.likes.length);
   const [openComments, setOpenComments] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
 
   const closeComments = () => {
     setOpenComments(false);
   };
 
   const handleLike = async () => {
+    setDisableButton(true);
     const liked = await likePost(post.id, user);
     if (liked) {
       setCurrentLikes(currentLikes + 1);
     } else {
       setCurrentLikes(currentLikes - 1);
     }
+    setTimeout(() => {
+      setDisableButton(false);
+    }, 1000);
   };
 
   return (
@@ -30,7 +35,7 @@ const InteractBar = ({ post }) => {
         <FavoriteIcon /> {currentLikes}
       </div>
       {user.loggedIn && (
-        <button onClick={handleLike}>
+        <button disabled={disableButton} onClick={handleLike}>
           <FavoriteBorderIcon />
         </button>
       )}
