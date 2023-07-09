@@ -56,7 +56,11 @@ const SideBar = () => {
       className="overflow-auto border-[1px] h-full w-full flex flex-col lg:flex-row items-center p-2 justify-between"
       style={backgroundImage}
     >
-      <img src={logo} className="max-w-[15vw] lg:max-h-[8vh]" />
+      <img
+        onClick={() => setPage("home")}
+        src={logo}
+        className="max-w-[15vw] lg:max-h-[8vh]"
+      />
 
       {!user.loggedIn && (
         <button onClick={() => setOpenLogin(true)}>Log in</button>
