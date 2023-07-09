@@ -56,7 +56,7 @@ const WorkoutsPage = () => {
   // }, []);
 
   return (
-    <div className="h-full flex flex-col gap-3 items-center justify-center w-[75vw] lg:w-[90vw] border-[1px] lg:h-[82vh]">
+    <div className="h-full flex flex-col gap-3 items-center justify-center w-full border-[1px]">
       <h2 className="title">Exercise Finder</h2>
       {!workout && !exercise && (
         <div className="item fade-in">

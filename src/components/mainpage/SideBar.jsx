@@ -53,7 +53,7 @@ const SideBar = () => {
 
   return (
     <div
-      className="w-[11vw] overflow-auto lg:w-[100%] border-[1px] h-full lg:h-[10vh] flex flex-col lg:flex-row items-center p-2 justify-between"
+      className="overflow-auto border-[1px] h-full w-full flex flex-col lg:flex-row items-center p-2 justify-between"
       style={backgroundImage}
     >
       <img src={logo} className="max-w-[15vw] lg:max-h-[8vh]" />
@@ -67,7 +67,7 @@ const SideBar = () => {
           <button onClick={() => setOpenNewPost(true)}>New Post</button>
         </div>
       )}
-      <div className="flex flex-col lg:hidden">
+      <div className="flex flex-col lg:hidden gap-1">
         <button onClick={() => setPage("home")}>
           <HomeIcon />
         </button>
@@ -92,7 +92,7 @@ const SideBar = () => {
       {showMenu && (
         <div className="lg:flex justify-center items-center absolute w-[88vw] animate-fade-in">
           <div
-            className="flex items-center border-[1px] justify-center border-[1px] p-2 bg-[rgba(0,0,0,0.9)] rounded-[20px]"
+            className="flex gap-1 items-center border-[1px] justify-center border-[1px] p-2 bg-[rgba(0,0,0,0.9)] rounded-[20px]"
             ref={menuRef}
           >
             <button onClick={() => setPage("home")}>

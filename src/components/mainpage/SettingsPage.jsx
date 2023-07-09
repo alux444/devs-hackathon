@@ -52,7 +52,7 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className="h-full flex flex-col gap-3 items-center justify-center w-[75vw] lg:w-[90vw] border-[1px] p-3 lg:h-[82vh]">
+    <div className="flex flex-col gap-3 items-center justify-center h-full w-full border-[1px] p-3">
       <h2 className="title">Settings</h2>
       <div className="flex align-center fade-in">
         <label htmlFor="image-upload" className="relative">
@@ -78,7 +78,7 @@ const SettingsPage = () => {
                           : data.avatar
                         : imageURL
                     }
-                    className="max-h-[40vh] border rounded-lg"
+                    className="max-h-[30vh] border rounded-lg"
                   />
                 )}
               </div>

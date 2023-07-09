@@ -18,12 +18,12 @@ const Home = () => {
   };
 
   return (
-    <div className="w-[90vw] h-[90vh] flex lg:flex-col justify-center">
-      <div className="h-[90vh] lg:h-[20vh]">
+    <div className="w-[90vw] h-[85vh] flex lg:flex-col justify-center">
+      <div className="w-[11vw]  lg:w-[90vw] h-[85vh] lg:h-[10vh] ">
         <SideBar />
       </div>
       <div
-        className="w-[75vw] lg:w-[90vw] h-full lg:h-[70vh] flex justify-center"
+        className="w-[75vw] lg:w-[90vw] h-full justify-center border-[1px] overflow-auto"
         style={backgroundImage}
       >
         {page == "home" && <HomePage />}
