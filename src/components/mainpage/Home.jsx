@@ -18,7 +18,7 @@ const Home = () => {
   };
 
   return (
-    <div className="w-[90vw] h-[85vh] flex lg:flex-col justify-center">
+    <div className="w-[90%] h-[85%] flex lg:flex-col justify-center">
       <div className="w-[11vw]  lg:w-[90vw] h-[85vh] lg:h-[10vh] ">
         <SideBar />
       </div>

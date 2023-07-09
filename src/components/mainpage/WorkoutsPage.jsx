@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import fetchBooks from "../../utils/fetchBooks";
 import fetchVideo from "../../utils/fetchVideo";
-import fetchGyms from "../../utils/fetchGyms";
+import { getCoord } from "../../utils/fetchGyms";
 
 const WorkoutsPage = () => {
-  const [search, setSearch] = useState("chest exercises");
   const [books, setBooks] = useState([]);
   const [videos, setVideos] = useState([]);
+  const [gym, setGym] = useState(null);
   const [exercise, setExercise] = useState(false);
   const [workout, setWorkout] = useState(false);
   const [chooseBooks, setChooseBooks] = useState(false);
@@ -66,10 +66,12 @@ const WorkoutsPage = () => {
     setVideos(vids);
   };
 
-  const getGyms = async () => {
+  const fetchGyms = async () => {
     setChooseGym(true);
-    const gyms = await fetchGyms();
-    console.log(gyms);
+    const coords = await getCoord();
+    const url = `https://www.google.com/maps/search/gyms/@${coords.latitude},${coords.longitude}`;
+    setGym(url);
+    return;
   };
 
   const chooseSpec = async (choice) => {
@@ -119,16 +121,16 @@ const WorkoutsPage = () => {
   });
 
   return (
-    <div className="h-full flex flex-col gap-3 items-center justify-center w-full border-[1px]">
+    <div className="h-full flex flex-col gap-3 items-center alignc justify-center w-full border-[1px]">
       <h2 className="title">Exercise Finder</h2>
       {!workout && !exercise && !chooseBooks && !chooseGym && (
         <div className="item fade-in">
-          <p>Im looking for...</p>
-          <div className="flex gap-3">
+          <p className="mb-2">Im looking for...</p>
+          <div className="flex gap-3 flex-wrap justify-center ">
             <button onClick={() => setWorkout(true)}>A Workout</button>
             <button onClick={() => setExercise(true)}>An Exercise</button>
             <button onClick={() => setChooseBooks(true)}>A Book</button>
-            <button onClick={() => getGyms()}>A Gym</button>
+            <button onClick={() => fetchGyms()}>A Gym</button>
           </div>
         </div>
       )}
@@ -192,7 +194,9 @@ const WorkoutsPage = () => {
       {chooseGym && (
         <div className="flex flex-col gap-4 fade-in w-full justify-center items-center">
           <small>Gyms Near Your Location</small>
-
+          <a href={gym} rel="noreferrer" target="_blank">
+            <button>Google Maps</button>
+          </a>
           <button onClick={reset}>
             <small>Back</small>
           </button>

@@ -32,10 +32,8 @@ const CommentPostCont = ({ post }) => {
             <p>{post.username}</p>
           </div>
         </div>
-        <br />
-        <img className="max-w-[60%] max-h-[50%]" src={post.image} />
-        <br />
       </div>
+      <img className="max-w-[60%] max-h-[40vh]" src={post.image} />
       <div className="max-w-[60%] lg:max-w-[100%] flex flex-col gap-2 max-h-[50vh] overflow-auto">
         <div>
           <p>"{post.caption}"</p>
