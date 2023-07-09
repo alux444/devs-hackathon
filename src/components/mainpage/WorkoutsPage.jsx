@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import fetchBooks from "../../utils/fetchBooks";
 import fetchVideo from "../../utils/fetchVideo";
-import { getCoord, getGym } from "../../utils/fetchGyms";
+import { getCoord } from "../../utils/fetchGyms";
 
 const WorkoutsPage = () => {
   const [books, setBooks] = useState([]);

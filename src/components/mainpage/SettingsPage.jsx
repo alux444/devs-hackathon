@@ -105,7 +105,9 @@ const SettingsPage = () => {
             />
           </div>
         )}
-        <button onClick={onSubmit}>Submit</button>
+        <button className="mt-2" onClick={onSubmit}>
+          Submit
+        </button>
         <small>{message}</small>
       </div>
     </div>
