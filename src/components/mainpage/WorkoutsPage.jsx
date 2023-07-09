@@ -186,7 +186,7 @@ const WorkoutsPage = () => {
           </p>
           <div className="flex w-[90%] border-[1px] overflow-auto h-[80%]">
             {chooseBooks && mappedBooks}
-            {workout || (exercise && mappedVids)}
+            {(workout || exercise) && mappedVids}
           </div>
           <button onClick={returnSelect}>
             <small>Back</small>
