@@ -37,6 +37,7 @@ const SideBar = () => {
   const signOut = () => {
     setUser({ loggedIn: false, username: "", email: "" });
     localStorage.removeItem("loggedInUser");
+    setPage("home");
   };
 
   const closeNewPost = () => {
