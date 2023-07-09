@@ -9,6 +9,7 @@ const WorkoutsPage = () => {
   const [exercise, setExercise] = useState(false);
   const [workout, setWorkout] = useState(false);
   const [chooseBooks, setChooseBooks] = useState(false);
+  const [chooseGym, setChooseGym] = useState(false);
   const [chosen, setChosen] = useState(null);
 
   const bodyParts = [
@@ -47,6 +48,7 @@ const WorkoutsPage = () => {
     setExercise(false);
     setWorkout(false);
     setChooseBooks(false);
+    setChooseGym(false);
   };
 
   const returnSelect = () => {
@@ -112,13 +114,14 @@ const WorkoutsPage = () => {
   return (
     <div className="h-full flex flex-col gap-3 items-center justify-center w-full border-[1px]">
       <h2 className="title">Exercise Finder</h2>
-      {!workout && !exercise && !chooseBooks && (
+      {!workout && !exercise && !chooseBooks && !chooseGym && (
         <div className="item fade-in">
           <p>Im looking for...</p>
           <div className="flex gap-3">
             <button onClick={() => setWorkout(true)}>A Workout</button>
             <button onClick={() => setExercise(true)}>An Exercise</button>
             <button onClick={() => setChooseBooks(true)}>A Book</button>
+            <button onClick={() => setChooseGym(true)}>A Gym</button>
           </div>
         </div>
       )}
@@ -174,6 +177,15 @@ const WorkoutsPage = () => {
               </button>
             ))}
           </div>
+          <button onClick={reset}>
+            <small>Back</small>
+          </button>
+        </div>
+      )}
+      {chooseGym && (
+        <div className="flex flex-col gap-4 fade-in w-full justify-center items-center">
+          <small>Gyms Near Your Location</small>
+
           <button onClick={reset}>
             <small>Back</small>
           </button>
