@@ -39,9 +39,9 @@ const WorkoutsPage = () => {
   ];
   const bookChoices = [
     "Bodybuilding",
-    "Fitness",
     "Sports Science",
     "Weight Loss",
+    "Dieting",
   ];
 
   const reset = () => {
@@ -89,7 +89,10 @@ const WorkoutsPage = () => {
   };
 
   const mappedBooks = books.map((book) => {
-    const fixedTitle = book.title.replace(/(&amp;|&#39;)/g, "");
+    let fixedTitle = book.title.replace(/(&amp;|&#39;)/g, "");
+    if (fixedTitle.length > 40) {
+      fixedTitle = fixedTitle.substring(0, 40) + "...";
+    }
     const authors = book.authors.join(", ");
     return (
       <div
@@ -98,7 +101,7 @@ const WorkoutsPage = () => {
       >
         <p className="w-[20vw]">{fixedTitle}</p>
         <a href={book.url} target="_blank" rel="noreferrer">
-          <img src={book.thumbnail} className="h-[10vh]" />
+          <img src={book.thumbnail} className="h-[20vh]" />
         </a>
         <p>{authors}</p>
       </div>
@@ -106,7 +109,10 @@ const WorkoutsPage = () => {
   });
 
   const mappedVids = videos.map((video) => {
-    const fixedTitle = video.title.replace(/(&amp;|&#39;)/g, "");
+    let fixedTitle = video.title.replace(/(&amp;|&#39;)/g, "");
+    if (fixedTitle.length > 40) {
+      fixedTitle = fixedTitle.substring(0, 40) + "...";
+    }
     return (
       <div
         key={fixedTitle}
@@ -114,7 +120,7 @@ const WorkoutsPage = () => {
       >
         <p className="w-[20vw]">{fixedTitle}</p>
         <a href={video.url} target="_blank" rel="noreferrer">
-          <img src={video.thumbnail} className="h-[10vh]" />
+          <img src={video.thumbnail} className="h-[20vh]" />
         </a>
       </div>
     );
