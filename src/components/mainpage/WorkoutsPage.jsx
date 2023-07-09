@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import fetchBooks from "../../utils/fetchBooks";
 import fetchVideo from "../../utils/fetchVideo";
-import fetchGyms from "../../utils/fetchGyms";
+import { getCoord, getGyms } from "../../utils/fetchGyms";
 
 const WorkoutsPage = () => {
-  const [search, setSearch] = useState("chest exercises");
   const [books, setBooks] = useState([]);
   const [videos, setVideos] = useState([]);
   const [exercise, setExercise] = useState(false);
@@ -66,10 +65,13 @@ const WorkoutsPage = () => {
     setVideos(vids);
   };
 
-  const getGyms = async () => {
+  const fetchGyms = async () => {
     setChooseGym(true);
-    const gyms = await fetchGyms();
+    // const coords = await getCoord();
+    // console.log(coords.latitude, coords.longitude);
+    const gyms = await getGyms(-36.8502204, 174.7644923);
     console.log(gyms);
+    return;
   };
 
   const chooseSpec = async (choice) => {
@@ -124,11 +126,11 @@ const WorkoutsPage = () => {
       {!workout && !exercise && !chooseBooks && !chooseGym && (
         <div className="item fade-in">
           <p>Im looking for...</p>
-          <div className="flex gap-3">
+          <div className="flex gap-3 flex-wrap ">
             <button onClick={() => setWorkout(true)}>A Workout</button>
             <button onClick={() => setExercise(true)}>An Exercise</button>
             <button onClick={() => setChooseBooks(true)}>A Book</button>
-            <button onClick={() => getGyms()}>A Gym</button>
+            <button onClick={() => fetchGyms()}>A Gym</button>
           </div>
         </div>
       )}

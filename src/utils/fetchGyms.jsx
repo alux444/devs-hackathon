@@ -1,7 +1,32 @@
-const fetchGyms = async () => {
+export const getCoord = async () => {
   try {
     const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/textsearch/json?query=gyms%20nearby&maxResults=10&type=gym&key=AIzaSyBG5AH-uneq08LTCp4MrgvMd-XIg2SrI1M`
+      "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBG5AH-uneq08LTCp4MrgvMd-XIg2SrI1M",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ considerIp: "true" }),
+      }
+    );
+
+    const data = await response.json();
+    const latitude = data.location.lat;
+    const longitude = data.location.lng;
+
+    return { latitude, longitude };
+  } catch (error) {
+    console.error("Error:", error);
+    return null;
+  }
+};
+
+export const getGyms = async (latitude, longitude) => {
+  try {
+    const response = await fetch(
+      `https://maps.googleapis.com/maps/api/place/textsearch/json?location=${latitude},${longitude}&query=gyms%20nearby&maxResults=10&type=gym&key=AIzaSyBG5AH-uneq08LTCp4MrgvMd-XIg2SrI1M`
     );
     const responseJson = await response.json();
     const result = [];
@@ -33,4 +58,3 @@ const fetchGyms = async () => {
     return [];
   }
 };
-export default fetchGyms;
