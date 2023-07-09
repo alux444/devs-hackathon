@@ -32,10 +32,10 @@ const PostContainer = ({ post }) => {
 
   return (
     <div
-      className="items-center justify-center align-center gap-2 flex p-[10px] mt-[10px] mb-[10px] border-[1px] border-solid rounded-[20px] border-white w-[90%] lg:flex-col fade-in"
+      className="items-center justify-center align-center gap-2 flex p-[10px] mt-[10px]  border-[1px] border-solid rounded-[20px] w-[90%] lg:flex-col fade-in"
       style={backgroundImage}
     >
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center justify-center h-fit">
         <div className="flex flex-col items-center">
           {isLoading ? (
             <span>Loading avatar...</span>
@@ -49,13 +49,13 @@ const PostContainer = ({ post }) => {
         </div>
         <br />
         {post.image !== "" && (
-          <img className="max-w-[50%] max-h-[50%] border-2" src={post.image} />
+          <img className="max-w-[50%] max-h-[50%]" src={post.image} />
         )}
         <br />
       </div>
       <div className="max-w-[60%] lg:max-w-[100%] flex flex-col gap-2 max-h-[50vh] overflow-auto">
         <div>
-          <p>"{post.caption}"</p>
+          <p>{post.caption}</p>
         </div>
         <div className="rounded-lg border-[1px] p-2">
           <h2>{post.workout.name}</h2>

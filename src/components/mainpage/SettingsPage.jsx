@@ -18,7 +18,7 @@ const SettingsPage = () => {
   const onChangeImage = (e) => {
     const image = e.target.files[0];
     setFile(image);
-    const imageURL = URL.createObjectURL(image); // Get the source image URL
+    const imageURL = URL.createObjectURL(image);
     setImageURL(imageURL);
   };
 

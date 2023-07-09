@@ -18,6 +18,7 @@ const CreatePostModal = ({ open, close }) => {
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [imageURL, setImageURL] = useState(null);
   const storage = getStorage();
   const postRef = collection(db, "posts");
   const modalRef = useRef(null);
@@ -42,6 +43,8 @@ const CreatePostModal = ({ open, close }) => {
   const onChangeImage = (e) => {
     const file = e.target.files[0];
     setSelectedImage(file);
+    const imageURL = URL.createObjectURL(file); // Get the source image URL
+    setImageURL(imageURL);
   };
 
   const onSubmit = async (e) => {
@@ -115,8 +118,9 @@ const CreatePostModal = ({ open, close }) => {
       <div className="w-[100%] h-[100%] items-center align-center justify-center flex">
         <div
           ref={modalRef}
-          className="border-2 border-solid border-white p-[25px] text-center items-center bg-[black] flex flex-col gap-2"
+          className="border-[1px] rounded-lg p-[25px] text-center items-center bg-[black] flex flex-col gap-2"
         >
+          <h2 className="title">New Post</h2>
           <form className="flex flex-col gap-2" onSubmit={onSubmit}>
             <label className="block mb-2">Select Image (optional)</label>
             <div className="flex items-center justify-center mb-2">
@@ -128,7 +132,12 @@ const CreatePostModal = ({ open, close }) => {
               />
               <br />
             </div>
-            <div>
+            {imageURL && (
+              <div className="max-h-[20vh] flex align-center items-center justify-center">
+                <img src={imageURL} className="max-w-[20vw] max-h-[20vh]" />
+              </div>
+            )}
+            <div className="flex flex-col gap-1">
               <label className="block mb-2">Select Workout</label>
               {mappedWorkouts}
             </div>
@@ -140,8 +149,8 @@ const CreatePostModal = ({ open, close }) => {
             />
 
             <small>
-              Workout Preview:{" "}
-              {selectedWorkout ? selectedWorkout.name : "None selected"}
+              Preview:{" "}
+              {selectedWorkout ? selectedWorkout.name : "No workout selected"}
             </small>
             <div className="flex justify-center">
               {selectedWorkout

@@ -48,13 +48,13 @@ const CommentsModal = ({ post, open, close }) => {
       <div className="w-[100%] h-[100%] items-center align-center justify-center flex">
         <div
           ref={modalRef}
-          className="border-2 border-solid flex flex-col border-white p-[25px] text-center items-center align-center bg-[black] max-w-[90%] max-h-[90%] overflow-auto"
+          className="border-[1px] rounded-lg border-solid flex flex-col border-white p-[25px] text-center items-center align-center bg-[black] max-w-[80%] max-h-[90%] overflow-auto"
         >
           <CommentPostCont post={post} />
           {data.length == 0 ? (
             <p>No comments yet.</p>
           ) : (
-            <div className="max-h-[30vh] overflow-auto w-full flex flex-col items-center border-2">
+            <div className="max-h-[30vh] overflow-auto w-full flex flex-col items-center">
               {mappedComments}
             </div>
           )}
@@ -62,7 +62,7 @@ const CommentsModal = ({ post, open, close }) => {
             {user.loggedIn ? (
               <form className="w-full flex gap-5 mt-5" onSubmit={onSubmit}>
                 <input
-                  className="w-[40vw] lg:w-[50vw]"
+                  className="w-[40vw] lg:w-[45vw]"
                   type="text"
                   value={comment}
                   onChange={handleComment}
