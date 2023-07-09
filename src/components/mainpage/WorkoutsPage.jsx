@@ -79,15 +79,17 @@ const WorkoutsPage = () => {
 
   const mappedBooks = books.map((book) => {
     const fixedTitle = book.title.replace(/(&amp;|&#39;)/g, "");
+    const authors = book.authors.join(", ");
     return (
       <div
         key={fixedTitle}
-        className="border-[1px] p-2 w-[50%] flex flex-col items-center"
+        className="border-[1px] p-2 w-[50%] flex flex-col items-center justify-center"
       >
         <p className="w-[20vw]">{fixedTitle}</p>
         <a href={book.url} target="_blank" rel="noreferrer">
           <img src={book.thumbnail} className="h-[10vh]" />
         </a>
+        <p>{authors}</p>
       </div>
     );
   });

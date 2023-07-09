@@ -118,7 +118,7 @@ const CreatePostModal = ({ open, close }) => {
       <div className="w-[100%] h-[100%] items-center align-center justify-center flex">
         <div
           ref={modalRef}
-          className="border-[1px] rounded-lg p-[25px] text-center items-center bg-[black] flex flex-col gap-2"
+          className="border-[1px] rounded-lg p-[25px] text-center items-center bg-[rgba(0,0,0,0.9)] flex flex-col gap-2 max-h-[90%] overflow-auto"
         >
           <h2 className="title">New Post</h2>
           <form className="flex flex-col gap-2" onSubmit={onSubmit}>
